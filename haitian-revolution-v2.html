@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Haitian Revolution, 1791–1804</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400;1,7..72,500&display=swap" rel="stylesheet">
+
+<!-- =====================================================================
+     STYLES
+     ===================================================================== -->
+<style>
+:root{
+  --night:#161D45; --night-2:#1F2858; --night-3:#2E3874;
+  --stone:#ECEAF3; --paper:#FBFAFD; --ink:#1A1F3A; --ink-2:#4A5070; --line:#D5D3E0;
+  --blue:#2B4ACB; --red:#D7263D; --gold:#F0B429;
+  --era-uprising:#FF6B7D; --era-freedom:#F0B429; --era-independence:#8FA2FF;
+  --display:"Big Shoulders Display","Big Shoulders","Arial Narrow","Helvetica Neue",sans-serif;
+  --serif:"Literata",Georgia,"Times New Roman",serif;
+  --ease:cubic-bezier(.65,0,.25,1);
+  --out:cubic-bezier(.16,1,.3,1);
+  --gutter:clamp(20px,5vw,72px);
+  --nav-h:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--night);color:var(--stone);font-family:var(--serif);font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:.95;margin:0;letter-spacing:.005em}
+p{margin:0 0 1em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--gutter)}
+section[id],.sec-game,.stage{scroll-margin-top:calc(var(--nav-h) + 24px)}
+
+/* ---------- buttons & chips ---------- */
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.02em;line-height:1;padding:14px 24px;border-radius:999px;border:2px solid currentColor;background:transparent;cursor:pointer;text-decoration:none;transition:background .25s,color .25s,border-color .25s,transform .25s var(--out)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.btn.primary:hover{background:#BE1C32;border-color:#BE1C32}
+.btn.small{font-size:16px;padding:10px 18px}
+.chip{font-family:var(--display);font-weight:700;font-size:17px;padding:8px 16px;border-radius:999px;border:2px solid rgba(26,31,58,.22);background:transparent;color:var(--ink);cursor:pointer;transition:all .25s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--stone);border-color:var(--ink)}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:2px solid rgba(236,234,243,.4);background:transparent;cursor:pointer;display:grid;place-items:center;flex:none;transition:border-color .2s,background .2s}
+.icon-btn:hover{border-color:var(--stone);background:rgba(236,234,243,.08)}
+.icon-btn svg{width:18px;height:18px}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:50;display:flex;align-items:center;transition:background .4s}
+.nav.scrolled{background:rgba(22,29,69,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav .wrap{display:flex;align-items:center;gap:26px;width:100%}
+.brand{font-family:var(--display);font-weight:800;font-size:22px;text-decoration:none;letter-spacing:.02em;margin-right:auto}
+.nav-links{display:flex;gap:22px}
+.nav-links a{font-family:var(--display);font-weight:600;font-size:18px;text-decoration:none;opacity:.75;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.score{font-family:var(--display);font-weight:700;font-size:17px;background:var(--gold);color:var(--ink);padding:7px 14px;border-radius:999px;white-space:nowrap;text-decoration:none}
+.score b{font-weight:900}
+.score.bump{animation:bump .5s var(--out)}
+@keyframes bump{40%{transform:scale(1.18)}}
+.progress{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0)}
+
+/* ---------- odometer ---------- */
+.odo{display:inline-flex;font-family:var(--display);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.odo .d{display:inline-block;height:1em;overflow:hidden}
+.odo .s{display:flex;flex-direction:column;transition:transform 1.2s var(--ease)}
+.odo .s span{display:block;height:1em;text-align:center}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;padding-top:calc(var(--nav-h) + 32px);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
+.hero-bg{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;z-index:-2}
+.hero-bg.active{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.18;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-odo{position:absolute;right:-1.5vw;top:50%;transform:translateY(-58%);font-size:min(36vw,72vh);color:rgba(236,234,243,.04);-webkit-text-stroke:2px rgba(236,234,243,.24);z-index:-1;user-select:none}
+.hero-slides{display:grid;padding:0 var(--gutter);max-width:1240px;margin:0 auto;width:100%}
+.slide{grid-area:1/1;max-width:860px;align-self:end;visibility:hidden}
+.slide.active{visibility:visible}
+.slide>*{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .9s var(--out)}
+.slide.active>*{opacity:1;transform:none}
+.slide.active>*:nth-child(1){transition-delay:.25s}
+.slide.active>*:nth-child(2){transition-delay:.35s}
+.slide.active>*:nth-child(3){transition-delay:.48s}
+.slide.active>*:nth-child(4){transition-delay:.6s}
+.slide-date{font-style:italic;font-size:20px;color:var(--slide-accent,var(--gold));margin-bottom:14px}
+.slide h1,.slide .h1{font-size:clamp(52px,min(8vw,13vh),124px);max-width:12ch;font-weight:900;margin-bottom:22px;text-wrap:balance}
+.slide-text{font-size:clamp(18px,1.6vw,21px);max-width:52ch;opacity:.88}
+.slide .btn{margin-top:10px}
+.hero-controls{display:flex;align-items:center;gap:10px;padding:44px var(--gutter) 36px;max-width:1240px;margin:0 auto;width:100%}
+.hc-years{display:flex;flex:1;gap:6px;margin:0 8px}
+.hc-year{flex:1;position:relative;background:none;border:0;padding:10px 0 14px;text-align:left;cursor:pointer;font-family:var(--display);font-weight:700;font-size:18px;opacity:.5;transition:opacity .3s}
+.hc-year:hover,.hc-year.active{opacity:1}
+.hc-year::before,.hc-year .fill{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(236,234,243,.22);border-radius:2px}
+.hc-year .fill{background:var(--stone);transform-origin:0 50%;transform:scaleX(0)}
+.hc-year.past .fill,.hc-year.active .fill{transform:scaleX(1)}
+.hero.autoplay .hc-year.active .fill{animation:fill var(--slide-ms,7000ms) linear forwards}
+.hero.paused .hc-year.active .fill{animation-play-state:paused}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ---------- generic sections ---------- */
+.sec{padding:clamp(88px,12vw,160px) 0}
+.sec.light{background:var(--stone);color:var(--ink)}
+.sec-head{max-width:760px;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head h2{font-size:clamp(48px,7vw,96px);margin-bottom:22px;text-wrap:balance}
+.sec-head p{font-size:20px;opacity:.85}
+.sec-game{margin-top:clamp(56px,8vw,96px)}
+.sec-game>h3{font-size:clamp(32px,4vw,48px);margin-bottom:8px}
+.sec-game>p{opacity:.8;margin-bottom:24px;max-width:56ch}
+
+/* ---------- context ---------- */
+.ctx{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,7vw,110px);align-items:start}
+.ctx-text h2{font-size:clamp(48px,7vw,96px);margin-bottom:28px}
+.ctx-text>p{max-width:58ch;font-size:19px}
+.ctx-text .btn{margin-top:28px;color:var(--ink)}
+.ctx-text h3{font-size:clamp(30px,3vw,40px);margin:0 0 18px}
+.groups{list-style:none;margin:0 0 48px;padding:0;border-top:2px solid var(--ink)}
+.groups li{display:grid;grid-template-columns:minmax(150px,.42fr) 1fr;gap:6px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.groups b{font-family:var(--display);font-weight:800;font-size:26px;line-height:1.05}
+.groups p{margin:0;font-size:18px;line-height:1.6}
+.groups .want{grid-column:2;color:var(--ink-2);font-size:17px}
+.groups .want i{font-style:normal;font-weight:600;color:var(--ink)}
+.dots-wrap{position:sticky;top:calc(var(--nav-h) + 32px)}
+.dots-wrap h3{font-size:30px;margin-bottom:6px}
+.dots-wrap .cap{font-size:15px;color:var(--ink-2);margin-bottom:20px}
+.dots{display:grid;grid-template-columns:repeat(10,1fr);gap:7px;max-width:420px}
+.dot{aspect-ratio:1;border-radius:50%;transform:scale(0);transition:transform .5s var(--out)}
+.dots.in .dot{transform:scale(1)}
+.dot.enslaved{background:var(--ink)}
+.dot.free{background:var(--blue)}
+.dot.white{background:transparent;box-shadow:inset 0 0 0 2px var(--ink-2)}
+.legend{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:10px;font-size:16px}
+.legend li{display:flex;gap:12px;align-items:center}
+.legend i{width:14px;height:14px;border-radius:50%;flex:none}
+
+/* ---------- horizontal timeline ---------- */
+.tl-sec{position:relative;background:var(--night)}
+.tl-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;padding:calc(var(--nav-h) + 18px) 0 18px}
+.tl-top{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;width:100%;margin-bottom:clamp(12px,2.4vh,26px)}
+.tl-top h2{font-size:clamp(36px,4.6vw,68px);margin-bottom:8px}
+.tl-intro{font-size:17px;opacity:.72;margin:0;max-width:56ch}
+.tl-yearbox{text-align:right;flex:none}
+.tl-odo{font-size:clamp(52px,6.6vw,100px);color:var(--era-color,var(--stone));transition:color .8s}
+.tl-era{font-family:var(--display);font-weight:700;font-size:19px;margin:4px 0 0;color:var(--era-color,var(--stone));transition:color .8s}
+.tl-pin>.wrap{width:100%}
+.tl-viewport{flex:1;min-height:0;position:relative}
+@media (max-height:760px) and (min-width:901px){
+  .tl-pin{padding-top:calc(var(--nav-h) + 8px);padding-bottom:10px}
+  .tl-top{margin-bottom:10px}
+  .tl-top h2{font-size:40px;margin:0}
+  .tl-odo{font-size:56px}
+  .tl-era{font-size:16px}
+  .tl-bottom{margin-top:10px}
+  .panel h3{font-size:clamp(30px,3vw,44px)}
+}
+.tl-track{position:absolute;inset:0 auto 0 0;display:flex;gap:var(--gap,4vw);will-change:transform}
+.panel{--pw:min(84vw,1060px);flex:0 0 var(--pw);width:var(--pw);height:100%;max-height:500px;align-self:center;display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(20px,3vw,40px);background:var(--night-2);border-radius:14px;padding:14px;opacity:.28;transform:scale(.9);transition:opacity .6s,transform .8s var(--out);cursor:pointer}
+.panel.active{opacity:1;transform:none;cursor:default}
+.scene-box{position:relative;border-radius:9px;overflow:hidden;min-height:0;background:#0A0F2E}
+.scene-box img{width:100%;height:100%;object-fit:cover}
+.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.panel-text{align-self:center;padding:8px 22px 8px 0;min-width:0}
+.panel-date{font-style:italic;font-size:19px;color:var(--c);margin-bottom:10px}
+.panel h3{font-size:clamp(34px,3.6vw,58px);margin-bottom:14px;text-wrap:balance}
+.panel p{font-size:18px;opacity:.88;max-width:40ch}
+.panel .btn{color:var(--stone)}
+.panel .btn:hover{background:var(--stone);color:var(--night)}
+.played{font-family:var(--display);font-weight:700;font-size:16px;color:var(--gold);display:none}
+.is-done .played{display:inline}
+.panel-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.tl-bottom{margin-top:clamp(12px,2.4vh,24px)}
+.tl-axis{position:relative;height:56px;margin:0 7px}
+.ax-line,.ax-fill{position:absolute;left:0;top:24px;height:2px;border-radius:2px}
+.ax-line{right:0;background:rgba(236,234,243,.16)}
+.ax-fill{background:var(--stone);width:0}
+.ax-band{position:absolute;top:22px;height:6px;border-radius:3px;background:var(--c);opacity:.32}
+.ax-era{position:absolute;top:0;background:none;border:0;padding:0 0 0 1px;font-family:var(--display);font-weight:700;font-size:14px;line-height:1;color:var(--c);cursor:pointer;white-space:nowrap}
+.ax-era:hover{text-decoration:underline}
+.ax-dot{position:absolute;top:25px;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--night);border:2px solid var(--c);cursor:pointer;padding:0;transition:transform .35s var(--out),background .3s}
+.ax-dot:hover{transform:scale(1.3)}
+.ax-dot.active{background:var(--c);transform:scale(1.5)}
+.ax-dot.done{box-shadow:0 0 0 3px rgba(240,180,41,.45)}
+.ax-tick{position:absolute;top:38px;font-size:12px;line-height:1;opacity:.5;transform:translateX(-50%);font-variant-numeric:tabular-nums}
+.tl-controls{display:flex;align-items:center;gap:14px;margin-top:4px}
+.tl-count{font-family:var(--display);font-weight:700;font-size:18px;min-width:4.5ch;text-align:center}
+.tl-hint{font-size:14px;opacity:.55;margin-left:auto}
+.tl-after{padding:clamp(40px,6vw,72px) 0 clamp(88px,12vw,140px)}
+.tl-after .sec-game{margin-top:0}
+
+/* ---------- scenes: ambient loops ---------- */
+.panel:not(.active) .scene *{animation-play-state:paused!important}
+.a-flash{opacity:0;animation:flash 5s infinite}
+.a-bolt{opacity:0;animation:bolt 5s infinite}
+@keyframes flash{0%,86%,100%{opacity:0}87%{opacity:.5}89%{opacity:0}91%{opacity:.35}93%{opacity:0}}
+@keyframes bolt{0%,86%,100%{opacity:0}87%,88%{opacity:1}89%{opacity:0}91%{opacity:1}93%{opacity:0}}
+.a-rain{animation:rain .6s linear infinite}
+@keyframes rain{to{transform:translate(-30px,300px)}}
+.a-glow{animation:glow 1.6s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.6}to{opacity:1}}
+.a-flicker{transform-box:fill-box;transform-origin:50% 100%;animation:flicker .45s ease-in-out infinite alternate}
+@keyframes flicker{0%{transform:scale(1,.84) skewX(3deg)}100%{transform:scale(.92,1.16) skewX(-3deg)}}
+.a-smoke{transform-box:fill-box;transform-origin:center;opacity:0;animation:smoke 3.6s ease-out infinite}
+@keyframes smoke{0%{transform:translate(0,0) scale(.5);opacity:.6}100%{transform:translate(-34px,-160px) scale(2.1);opacity:0}}
+.a-waves{animation:waves 3s linear infinite}
+.a-waves.slow{animation-duration:5.5s}
+@keyframes waves{to{transform:translateX(-60px)}}
+.a-bob{transform-box:fill-box;transform-origin:50% 100%;animation:bob 2.6s ease-in-out infinite alternate}
+@keyframes bob{from{transform:rotate(-2.5deg)}to{transform:rotate(2.5deg) translateY(2px)}}
+.a-spin{transform-box:fill-box;transform-origin:center;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.a-birds{animation:birds 16s linear infinite}
+@keyframes birds{from{transform:translateX(-100px)}to{transform:translateX(580px)}}
+.a-puff{transform-box:fill-box;transform-origin:center;opacity:0;animation:puff 2.4s ease-out infinite}
+@keyframes puff{0%{transform:scale(.2);opacity:.95}100%{transform:scale(1.9);opacity:0}}
+.a-blink{opacity:0;animation:blink 2.4s infinite}
+@keyframes blink{0%,6%{opacity:1}12%,100%{opacity:0}}
+.a-wave{transform-box:fill-box;transform-origin:0 50%;animation:wave 2s ease-in-out infinite alternate}
+@keyframes wave{from{transform:skewY(-3deg)}to{transform:skewY(3deg) scaleX(.97)}}
+.a-drift{animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translateX(40px)}}
+.a-ember{opacity:0;animation:ember 2.6s ease-out infinite}
+@keyframes ember{0%{transform:translate(0,0);opacity:1}100%{transform:translate(-14px,-120px);opacity:0}}
+.a-cheer{transform-box:fill-box;transform-origin:50% 100%;animation:cheer .9s ease-in-out infinite alternate}
+@keyframes cheer{to{transform:translateY(-5px)}}
+.a-gallop{animation:gallop .5s ease-in-out infinite alternate}
+@keyframes gallop{to{transform:translateY(-4px)}}
+/* ---------- scenes: one-shot moments (replay each time a panel becomes active) ---------- */
+.a-unroll{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0)}
+.play .a-unroll{animation:unroll .9s var(--out) .2s forwards}
+@keyframes unroll{to{transform:scaleY(1)}}
+.a-draw{stroke-dasharray:1;stroke-dashoffset:1}
+.play .a-draw{animation:draw .45s ease forwards}
+.play .a-draw.long{animation-duration:2s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.a-stamp{transform-box:fill-box;transform-origin:center;opacity:0}
+.play .a-stamp{animation:stamp .55s cubic-bezier(.3,1.6,.5,1) 2.3s forwards}
+@keyframes stamp{from{transform:scale(2.6);opacity:0}to{transform:scale(1);opacity:1}}
+.a-fade{opacity:0}
+.play .a-fade{animation:fade .8s ease forwards}
+@keyframes fade{to{opacity:1}}
+.a-pop{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+.play .a-pop{animation:pop .5s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes pop{to{transform:scale(1)}}
+.a-flood{transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0)}
+.play .a-flood{animation:flood 1.4s var(--ease) forwards}
+@keyframes flood{to{transform:scaleX(1)}}
+.a-breakL,.a-breakR{transform-box:fill-box;transform-origin:center}
+.play .a-breakL{animation:breakL 1s var(--out) .7s forwards}
+.play .a-breakR{animation:breakR 1s var(--out) .7s forwards}
+@keyframes breakL{to{transform:translate(-44px,12px) rotate(-6deg)}}
+@keyframes breakR{to{transform:translate(44px,12px) rotate(6deg)}}
+.a-sparks{transform-box:fill-box;transform-origin:center;opacity:0}
+.play .a-sparks{animation:sparks .8s ease-out .65s forwards}
+@keyframes sparks{0%{transform:scale(.2);opacity:1}100%{transform:scale(1.7);opacity:0}}
+.play .a-sailout{animation:sailout 9s ease-in .5s forwards}
+@keyframes sailout{to{transform:translateX(340px)}}
+.a-arrive{transform:translateX(-380px)}
+.play .a-arrive{animation:arrive 3.4s var(--out) forwards}
+@keyframes arrive{to{transform:translateX(0)}}
+.a-tear{transform-box:fill-box;transform-origin:center}
+.play .a-tear{animation:tear 1.1s var(--ease) .7s forwards}
+@keyframes tear{to{transform:translate(30px,-120px) rotate(-22deg);opacity:0}}
+.play .a-joinR{animation:joinR .9s var(--ease) 1.7s forwards}
+.play .a-joinL{animation:joinL .9s var(--ease) 1.7s forwards}
+@keyframes joinR{to{transform:translateX(35px)}}
+@keyframes joinL{to{transform:translateX(-35px)}}
+.play .a-lower{animation:lower 1.4s ease-in 1s forwards}
+@keyframes lower{to{transform:translateY(42px);opacity:0}}
+.a-raise{transform:translateY(56px)}
+.a-raise.hid{opacity:0}
+.play .a-raise{animation:raise 2s var(--out) 2.4s forwards}
+@keyframes raise{to{transform:translateY(0);opacity:1}}
+.a-march{transform:translateX(-80px);opacity:0}
+.play .a-march{animation:march 2.6s var(--out) .3s forwards}
+@keyframes march{to{transform:none;opacity:1}}
+.a-rise{transform:translateY(120px)}
+.play .a-rise{animation:rise 3.6s var(--out) .2s forwards}
+@keyframes rise{to{transform:translateY(0)}}
+
+/* ---------- three revolutions ---------- */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);counter-reset:r}
+.rev{border-top:4px solid var(--c);padding-top:22px}
+.rev-n{font-family:var(--display);font-weight:900;font-size:88px;line-height:.8;color:var(--c);display:block;margin-bottom:14px}
+.rev h3{font-size:clamp(30px,3vw,40px);margin-bottom:6px}
+.rev-years{font-style:italic;font-size:17px;color:var(--c);margin-bottom:12px}
+.rev p{font-size:18px;opacity:.9}
+.overlap{max-width:70ch;font-size:20px;line-height:1.7;margin-top:clamp(40px,5vw,64px);padding-left:24px;border-left:4px solid var(--gold)}
+/* ---------- people ---------- */
+.people{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.person{position:relative;overflow:hidden;min-height:360px;border:0;border-radius:10px;padding:28px;text-align:left;cursor:pointer;color:var(--stone);background:var(--tone);display:flex;flex-direction:column;justify-content:flex-end;transition:transform .5s var(--out)}
+.person .portrait,.person .portrait-img{position:absolute;right:3%;top:50%;height:88%;width:auto;transform:translateY(-50%);transition:transform .9s var(--out);filter:drop-shadow(0 18px 24px rgba(0,0,0,.35))}
+.person .portrait-img{border-radius:50%/50%;aspect-ratio:5/6;object-fit:cover;border:6px solid #C9A24A}
+.person:hover{transform:translateY(-4px)}
+.person:hover .portrait{transform:translateY(-52%) scale(1.03)}
+.person-text{position:relative;z-index:1;max-width:52%}
+.person-years{font-style:italic;font-size:16px;opacity:.85}
+.person h3{font-size:clamp(34px,3.6vw,54px);margin:4px 0 8px}
+.person-role{font-size:16px;opacity:.88;margin:0;display:block}
+.person .played{position:absolute;top:22px;left:28px;z-index:1}
+.person .play{display:inline-block;margin-top:16px;font-family:var(--display);font-weight:700;font-size:17px;text-decoration:underline;text-underline-offset:4px}
+.credit{position:absolute;left:10px;bottom:7px;z-index:2;font-family:var(--serif);font-style:italic;font-size:11px;line-height:1.2;color:rgba(255,255,255,.75);text-shadow:0 1px 3px rgba(0,0,0,.7);pointer-events:none;max-width:90%}
+.person .credit{left:auto;right:14px;bottom:10px;text-align:right}
+/* ---------- legacy ---------- */
+.legacy{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,40px)}
+.leg{background:none;border:0;border-top:4px solid var(--c);text-align:left;padding:24px 0 0;cursor:pointer;color:var(--stone);transition:transform .5s var(--out)}
+.leg:hover{transform:translateY(-4px)}
+.leg-date{font-style:italic;font-size:17px;color:var(--c)}
+.leg h3{font-size:clamp(32px,3vw,42px);margin:8px 0 12px}
+.leg p{font-size:17px;opacity:.82}
+.leg .more{font-family:var(--display);font-weight:700;font-size:17px;text-decoration:underline;text-underline-offset:4px}
+
+/* ---------- footer ---------- */
+.foot{background:var(--night-2);padding:56px 0 44px;font-size:16px}
+.foot .wrap{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.foot h4{font-size:24px;margin-bottom:10px}
+.foot p{opacity:.85;margin:0}
+
+/* ---------- mini-page overlay ---------- */
+.page{position:fixed;inset:0;z-index:100;background:var(--stone);color:var(--ink);overflow-y:auto;overscroll-behavior:contain;
+  clip-path:circle(0px at var(--x,50%) var(--y,50%));transition:clip-path .8s var(--ease);visibility:hidden}
+.page.open{clip-path:circle(150vmax at var(--x,50%) var(--y,50%));visibility:visible}
+.page-head{background:var(--night);color:var(--stone);border-top:6px solid var(--c,var(--red));padding:24px 0 clamp(44px,6vw,80px)}
+.page-head .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:clamp(32px,5vw,72px);align-items:end}
+.page-head.no-visual .wrap{grid-template-columns:1fr}
+.page-bar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:clamp(32px,6vw,72px)}
+.crumb{font-family:var(--display);font-weight:700;font-size:18px;opacity:.7}
+.page-bar .btn{color:var(--stone)}
+.page-date{font-style:italic;font-size:21px;color:var(--c);margin-bottom:14px}
+.page-head h2{font-size:clamp(52px,7.6vw,124px);font-weight:900;max-width:14ch;margin-bottom:24px;text-wrap:balance}
+.page-sum{font-size:clamp(19px,1.8vw,23px);max-width:50ch;opacity:.88;margin:0}
+.page-visual{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/10;background:#0A0F2E}
+.page-visual.portrait-box{aspect-ratio:5/6;max-height:460px;justify-self:end;width:100%;max-width:380px;background:var(--tone);display:grid;place-items:center}
+.page-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.page-visual .portrait{width:86%;height:auto}
+.page-body{display:block;padding-top:clamp(48px,7vw,88px);padding-bottom:24px}
+.page-main>p{font-size:19px;line-height:1.78;max-width:64ch}
+.page-main>p:first-child::first-letter{font-family:var(--display);font-weight:900;float:left;font-size:5.4em;line-height:.8;padding:.06em .1em 0 0;color:var(--red)}
+.page-main blockquote{margin:36px 0;padding:4px 0 4px 26px;border-left:4px solid var(--red);font-style:italic;font-size:clamp(22px,2.2vw,28px);line-height:1.45;max-width:36ch}
+.page-main blockquote cite{display:block;font-style:normal;font-size:16px;margin-top:10px;color:var(--ink-2)}
+.notes{margin-top:32px;max-width:64ch}
+.notes h4,.page-cites h4{font-size:24px;margin-bottom:10px}
+.page-cites{margin-top:32px;max-width:64ch;font-size:16px}
+.page-cites ol{margin:0;padding-left:0;list-style:none}
+.page-cites li{margin-bottom:6px}
+.page-cites button{background:none;border:0;padding:0;font:inherit;color:var(--blue);text-decoration:underline;text-underline-offset:3px;cursor:pointer;text-align:left}
+.page-aside h4{font-size:24px;margin-bottom:12px}
+.facts{list-style:none;padding:0;margin:0 0 32px;border-top:2px solid var(--ink)}
+.facts li{padding:12px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.5}
+.page-aside figure{margin:0}
+.page-aside figcaption{font-size:14px;color:var(--ink-2);margin-top:8px}
+.page-game{padding-top:clamp(40px,6vw,72px);padding-bottom:clamp(40px,6vw,72px)}
+.page-game>h3{font-size:clamp(36px,4.4vw,56px);margin-bottom:22px}
+.page-nav{display:flex;justify-content:space-between;gap:16px;padding-top:28px;padding-bottom:72px;border-top:1px solid var(--line)}
+.pn{background:none;border:0;cursor:pointer;text-align:left;padding:8px 0;max-width:46%}
+.pn.next{text-align:right;margin-left:auto}
+.pn small{display:block;font-size:15px;color:var(--ink-2)}
+.pn span{font-family:var(--display);font-weight:800;font-size:clamp(22px,2.4vw,32px);line-height:1}
+.pn:hover span{color:var(--red)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .8s var(--out)}
+.page.open .reveal{opacity:1;transform:none}
+.page.open .page-bar.reveal{transition-delay:.3s}
+.page.open .page-date.reveal{transition-delay:.36s}
+.page.open h2.reveal{transition-delay:.42s}
+.page.open .page-sum.reveal{transition-delay:.5s}
+.page.open .page-visual.reveal{transition-delay:.45s}
+.page-content{transition:opacity .25s ease}
+.page-content.swap{opacity:0}
+
+/* ---------- games ---------- */
+.game{background:var(--paper);color:var(--ink);border-radius:8px;border-left:6px solid var(--red);padding:clamp(22px,3.4vw,40px);max-width:820px;box-shadow:0 30px 60px -40px rgba(10,14,40,.55)}
+.game-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.game-title{font-family:var(--display);font-weight:800;font-size:30px;line-height:1}
+.game-meta{font-size:15px;color:var(--ink-2);margin-right:auto}
+.game-pts{font-family:var(--display);font-weight:700;font-size:16px;background:var(--gold);padding:3px 10px;border-radius:999px}
+.q{font-size:21px;font-weight:500;line-height:1.45;margin:0 0 18px}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;font-size:17px;line-height:1.4;padding:14px 18px;border:2px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;transition:border-color .2s,background .2s,transform .3s var(--out)}
+.opt:hover:not(:disabled){border-color:var(--blue);transform:translateX(4px)}
+.opt:disabled{cursor:default}
+.opt.correct{background:var(--blue);border-color:var(--blue);color:#fff}
+.opt.wrong{background:#FCE4E7;border-color:var(--red)}
+.feedback{margin-top:16px;font-size:17px;min-height:1px}
+.feedback p{margin-bottom:14px}
+.game .btn{color:var(--ink)}
+.game .btn.primary{color:#fff}
+.result{font-family:var(--display);font-weight:800;font-size:clamp(34px,4vw,48px);line-height:1;margin:6px 0 12px}
+.result-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.hint{color:var(--ink-2);font-size:16px;margin-bottom:16px}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+.mcol{display:grid;gap:10px;align-content:start}
+.mi{position:relative;text-align:left;font-size:16px;line-height:1.35;padding:13px 16px;border:2px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;transition:border-color .2s,background .2s}
+.mi:hover:not(:disabled){border-color:var(--blue)}
+.mi.sel{border-color:var(--blue);background:#E7ECFF}
+.mi.matched{background:var(--blue);border-color:var(--blue);color:#fff;cursor:default;padding-left:44px}
+.mi.matched::before{content:attr(data-n);position:absolute;left:14px;top:50%;transform:translateY(-50%);font-family:var(--display);font-weight:900;font-size:20px}
+.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.mi.shake{border-color:var(--red)}
+.olist{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:8px}
+.oi{display:flex;align-items:center;gap:12px;padding:10px 12px 10px 14px;background:#fff;border:2px solid var(--line);border-radius:8px;cursor:grab;transition:border-color .2s}
+.oi.dragging{opacity:.45}
+.oi.ok{border-color:var(--blue)}
+.oi.bad{border-color:var(--red);background:#FFF5F6}
+.grip{color:#9C99B0;font-size:18px;letter-spacing:-2px;user-select:none}
+.oi-t{flex:1;font-size:16px;line-height:1.35}
+.oi-d{font-style:italic;font-size:14px;color:var(--blue);white-space:nowrap}
+.mv{display:flex;gap:6px}
+.mv button{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);background:#fff;cursor:pointer;display:grid;place-items:center;font-size:15px;line-height:1}
+.mv button:hover:not(:disabled){border-color:var(--blue)}
+.mv button:disabled{opacity:.3;cursor:default}
+.olist.locked .oi{cursor:default}
+.trail{list-style:none;padding:0;margin:0 0 16px;font-size:14px;color:var(--ink-2)}
+.trail li::before{content:"You chose: ";font-style:italic}
+.scn{font-size:19px;line-height:1.6;margin-bottom:20px}
+.outcome{display:inline-block;font-family:var(--display);font-weight:800;font-size:18px;padding:6px 14px;border-radius:999px;margin-bottom:14px}
+.outcome.good{background:var(--blue);color:#fff}
+.outcome.bad{background:#FCE4E7;color:#9E1428}
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:24px;z-index:200;transform:translate(-50%,calc(100% + 40px));opacity:0;background:var(--gold);color:var(--ink);font-family:var(--display);font-weight:800;font-size:20px;padding:12px 22px;border-radius:999px;box-shadow:0 18px 40px -18px rgba(0,0,0,.5);transition:transform .5s var(--out),opacity .3s;pointer-events:none}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){
+  .nav-links{display:none}
+}
+@media (max-width:900px){
+  .ctx{grid-template-columns:1fr}
+  .dots-wrap{position:static}
+  .revs{grid-template-columns:1fr}
+  .groups li{grid-template-columns:1fr}
+  .groups .want{grid-column:1}
+  .page-head .wrap{grid-template-columns:1fr}
+  .page-visual{margin-top:28px}
+  .page-visual.portrait-box{justify-self:start;max-width:300px}
+  .tl-intro,.tl-hint,.ax-tick.minor{display:none}
+  .tl-top h2{font-size:32px;margin:0}
+  .tl-odo{font-size:44px}
+  .tl-era{font-size:15px}
+  .panel{--pw:86vw;grid-template-columns:1fr;grid-template-rows:minmax(0,44%) 1fr;gap:12px;max-height:none;padding:10px}
+  .panel-text{padding:2px 8px 6px;align-self:start}
+  .panel-date{font-size:16px;margin-bottom:6px}
+  .panel h3{font-size:30px;margin-bottom:8px}
+  .panel p{font-size:16px;line-height:1.5;margin-bottom:12px}
+  .ax-era{font-size:12px}
+  .people{grid-template-columns:1fr}
+  .person{min-height:440px;justify-content:flex-end}
+  .person .portrait,.person .portrait-img{top:16px;right:50%;height:58%;transform:translateX(50%)}
+  .person:hover .portrait{transform:translateX(50%) scale(1.02)}
+  .person-text{max-width:100%}
+  .person .credit{bottom:auto;top:12px}
+  .ax-era{display:none}
+  .legacy{grid-template-columns:1fr}
+  .match{gap:8px 10px}
+  .mi{font-size:14px;padding:11px 12px}
+  .mi.matched{padding-left:34px}
+  .mi.matched::before{left:10px;font-size:17px}
+}
+@media (max-width:560px){
+  body{font-size:17px}
+  .hc-year{font-size:15px}
+  .hero .icon-btn{display:none}
+  .hero-odo{top:30%;font-size:48vw}
+  .score{font-size:15px;padding:6px 12px}
+  .oi{flex-wrap:wrap}
+  .oi-d{order:3;width:100%;padding-left:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important}
+}
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     PAGE SHELL (content is filled in from the CONTENT object below)
+     ===================================================================== -->
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#hero" id="brand"></a>
+    <div class="nav-links">
+      <a href="#context">Saint-Domingue</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#revolutions">Three revolutions</a>
+      <a href="#people">People</a>
+      <a href="#legacy">Legacy</a>
+    </div>
+    <span class="score" id="score" aria-live="polite"><b>0</b> points</span>
+  </div>
+  <div class="progress" id="progress"></div>
+</nav>
+
+<main>
+  <section class="hero" id="hero" aria-roledescription="carousel" aria-label="Introduction">
+    <div id="hero-bgs"></div>
+    <div class="odo hero-odo" id="hero-odo" aria-hidden="true"></div>
+    <div class="hero-slides" id="hero-slides"></div>
+    <div class="hero-controls">
+      <button class="icon-btn" id="hero-prev" aria-label="Previous slide"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12.5 4 6.5 10l6 6"/></svg></button>
+      <div class="hc-years" id="hero-years" role="tablist" aria-label="Choose a slide"></div>
+      <button class="icon-btn" id="hero-next" aria-label="Next slide"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m7.5 4 6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <section class="sec light" id="context">
+    <div class="wrap">
+      <div class="ctx">
+        <div class="ctx-text" id="ctx-text"></div>
+        <div class="dots-wrap" id="ctx-dots"></div>
+      </div>
+      <div class="sec-game" id="sg-context"></div>
+    </div>
+  </section>
+
+  <section class="tl-sec" id="timeline" aria-label="Timeline">
+    <div class="tl-pin">
+      <div class="wrap">
+        <div class="tl-top">
+          <div id="tl-head"></div>
+          <div class="tl-yearbox"><div class="odo tl-odo" id="tl-odo" aria-hidden="true"></div><p class="tl-era" id="tl-era"></p></div>
+        </div>
+      </div>
+      <div class="tl-viewport"><div class="tl-track" id="tl-track"></div></div>
+      <div class="wrap tl-bottom">
+        <div class="tl-axis" id="tl-axis"></div>
+        <div class="tl-controls">
+          <button class="icon-btn" id="tl-prev" aria-label="Previous event"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12.5 4 6.5 10l6 6"/></svg></button>
+          <span class="tl-count" id="tl-count" aria-live="polite"></span>
+          <button class="icon-btn" id="tl-next" aria-label="Next event"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m7.5 4 6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="tl-after"><div class="wrap"><div class="sec-game" id="sg-timeline"></div></div></div>
+
+  <section class="sec" id="revolutions">
+    <div class="wrap">
+      <header class="sec-head" id="rv-head"></header>
+      <div class="revs" id="rv-grid"></div>
+      <p class="overlap" id="rv-overlap"></p>
+      <div class="sec-game" id="sg-revolutions"></div>
+    </div>
+  </section>
+
+  <section class="sec light" id="people">
+    <div class="wrap">
+      <header class="sec-head" id="pp-head"></header>
+      <div class="people" id="pp-grid"></div>
+      <div class="sec-game" id="sg-people"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="legacy">
+    <div class="wrap">
+      <header class="sec-head" id="lg-head"></header>
+      <div class="legacy" id="lg-grid"></div>
+      <div class="sec-game" id="sg-legacy"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap" id="foot"></div></footer>
+
+<div class="page" id="page" role="dialog" aria-modal="true" aria-labelledby="page-title" hidden>
+  <div class="page-content" id="page-content"></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="fx-paint" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation=".35"/>
+    </filter>
+    <filter id="fx-grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .4  0 0 0 .9 0"/></filter>
+    <linearGradient id="fx-fold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".18"/><stop offset=".25" stop-color="#fff" stop-opacity=".14"/><stop offset=".5" stop-color="#000" stop-opacity=".16"/><stop offset=".75" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".2"/></linearGradient>
+    <filter id="fx-soft"><feGaussianBlur stdDeviation="2.2"/></filter>
+    <radialGradient id="fx-vig" cx=".5" cy=".5" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+    <linearGradient id="fx-light" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE9C2" stop-opacity=".22"/><stop offset=".5" stop-color="#FFE9C2" stop-opacity="0"/></linearGradient>
+  </defs>
+</svg>
+
+<!-- =====================================================================
+     CONTENT  —  EDIT EVERYTHING HERE
+     ---------------------------------------------------------------------
+     • Every piece of text on the site comes from this object.
+     • In-text citations are written straight into the text, e.g. (Ghachem).
+     • Games: three types are supported. Put the right answers in order;
+       the site shuffles them.
+         match     { type:"match", prompt, pairs:[[left, right], ...] }
+         order     { type:"order", prompt, items:[{ label, date }, ...] }   // correct order
+         scenario  { type:"scenario", start:"nodeId", nodes:{ id:{ text, choices:[{label,next}] }
+                                                       or { text, end:true, outcome:"good"|"bad" } } }
+     • Timeline events: `scene:` picks the drawing (storm, fire, chains, decree,
+       ships, island, fleet, flag, fort, sunrise). `image: "file.jpg"` replaces
+       the drawing with a picture, and `imageCaption:` is its source line.
+     • People: `figure:` sets the drawn portrait. `image:` + `imageCaption:`
+       replace it with a real portrait and its source.
+     ===================================================================== -->
+<script>
+const CONFIG = {
+  slideDuration: 7000   // ms per hero slide
+};
+
+const CONTENT = {
+  site: {
+    brand: "Haitian Revolution",
+    team: "Mark & Gabe",
+    course: "World History",
+    illustrationCredit: ""
+  },
+
+  hero: [
+    { year: 1791, date: "August 1791", accent: "#FF6B7D", glow: "#7A1A3A",
+      title: "The richest colony on earth catches fire",
+      cta: { label: "Start with the uprising", page: "bois-caiman" } },
+    { year: 1794, date: "February 1794", accent: "#F0B429", glow: "#6B4A10",
+      title: "Freedom, written into law",
+      cta: { label: "Play", page: "abolition-1794" } },
+    { year: 1801, date: "July 1801", accent: "#8FA2FF", glow: "#24409A",
+      title: "A formerly enslaved general governs the colony",
+      cta: { label: "Meet Louverture", page: "louverture" } },
+    { year: 1803, date: "November 1803", accent: "#FF6B7D", glow: "#7A1A3A",
+      title: "Napoleon’s army, defeated",
+      cta: { label: "Go to Vertières", page: "vertieres" } },
+    { year: 1804, date: "1 January 1804", accent: "#F0B429", glow: "#24409A",
+      title: "Haiti",
+      cta: { label: "Explore the timeline", scroll: "#timeline" } }
+  ],
+
+  eras: {
+    uprising:     { label: "The uprising, 1791–93", short: "Uprising", color: "var(--era-uprising)" },
+    freedom:      { label: "Freedom and Louverture, 1793–1801", short: "Freedom", color: "var(--era-freedom)" },
+    independence: { label: "War of independence, 1802–04", short: "Independence", color: "var(--era-independence)" }
+  },
+
+  /* ---------------- Section: Saint-Domingue ---------------- */
+  context: {
+    heading: "Saint-Domingue, 1789",
+    hierarchyTitle: "Social hierarchy",
+    groups: [
+      { name: "Grands blancs", def: "Rich white people who usually owned the plantations.",
+        wanted: "To run the colony themselves and trade more freely without France getting in the way." },
+      { name: "Petits blancs", def: "Working class white people.",
+        wanted: "To be treated as equal citizens with the rich whites." },
+      { name: "Gens de couleur", def: "Free people of color, a lot of them were actually richer and more educated than the petits blancs.",
+        wanted: "The same rights as white people, since the rights of man was supposed to be for everyone who was free." },
+      { name: "Enslaved people", def: "About 500,000 people who were forced to work on the plantations, which was most of the colony.",
+        wanted: "Their freedom." }
+    ],
+    frTitle: "Connection to the French Revolution",
+    fr: [
+      "The French Revolution affected the people in Saint-Domingue because they saw what was happening in France and thought they could do the same thing and gain more liberty.",
+      "The idea of the rights of man made every group want something different, the rich whites wanted to run things themselves, the free people of color wanted equal rights and the slaves wanted to be free. In 1792 France gave free people of color full rights and in 1793 Sonthonax freed the slaves in the north."
+    ],
+    population: [
+      { key: "enslaved", label: "Enslaved people", count: "about 500,000", dots: 88 },
+      { key: "white",    label: "White colonists", count: "about 40,000",  dots: 7 },
+      { key: "free",     label: "Free people of color", count: "about 30,000", dots: 5 }
+    ],
+    dotsTitle: "Who lived in the colony",
+    dotsCaption: "Each dot is about 1% of the population.",
+    playLabel: "Play"
+  },
+
+  contextPage: {
+    id: "saint-domingue", year: 1789, date: "1789", era: "uprising",
+    title: "Life in Saint-Domingue",
+    body: [
+        "Saint-Domingue had about 500,000 slaves, about 40,000 white people and about 30,000 free people of color.",
+        "The slaves were worked 16 to 18 hours a day for most of the year and whipping was the most common punishment, and by 1787 more than 40,000 Africans were being brought over every single year.",
+        "Free people of color could own property but white colonists kept making laws to limit their freedom, and in 1790 a free man of color led an uprising for equal rights and got captured and executed."
+    ],
+    game: { type: "match", title: "What did each group want?", prompt: "Pick a group, then what it wanted.",
+      pairs: [
+        ["Grands blancs", "More self-rule and freer trade"],
+        ["Petits blancs", "Equal citizenship with rich whites"],
+        ["Gens de couleur", "The same rights as white citizens"],
+        ["Enslaved people", "Freedom"]
+      ] }
+  },
+
+  /* ---------------- Section: Timeline ---------------- */
+  timeline: {
+    heading: "Thirteen years, ten turning points",
+    sectionGame: {
+      title: "Put the revolution in order",
+      game: { type: "order", title: "Timeline challenge", prompt: "Earliest at the top.",
+        items: [
+          { label: "The ceremony at Bois Caïman", date: "Aug 1791" },
+          { label: "Sonthonax frees the enslaved in the north", date: "Aug 1793" },
+          { label: "Louverture switches to France", date: "May 1794" },
+          { label: "The British withdraw", date: "1798" },
+          { label: "Louverture’s constitution", date: "Jul 1801" },
+          { label: "Napoleon’s army lands", date: "Feb 1802" },
+          { label: "The Battle of Vertières", date: "Nov 1803" },
+          { label: "Independence declared", date: "Jan 1804" }
+        ] }
+    }
+  },
+
+  events: [
+    { id: "bois-caiman", year: 1791, date: "14 August 1791", era: "uprising", scene: "storm", iso: "1791-08-14",
+      title: "The ceremony at Bois Caïman",
+      summary: "The slaves meet in a forest and plan a revolt.",
+      body: [
+        "The slaves got together in a forest called Bois Caïman and did a Vodou ceremony where they swore to rise up together.",
+        "Most of what we know about it was written years later, some of it by white colonists who hated the rebels, so historians aren’t sure about every detail."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "Bois Caïman", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["Bois Caïman", "The forest where they met"],
+          ["Vodou", "The religion of the ceremony"],
+          ["The oath", "A promise to rise up together"],
+          ["Years later", "When most accounts were written down"]
+        ] }
+    },
+    { id: "uprising", year: 1791, date: "22 August 1791", era: "uprising", scene: "fire", iso: "1791-08-22",
+      title: "The north rises up",
+      summary: "The revolt starts in the north.",
+      body: [
+        "On August 22, 1791 the revolt started in the north.",
+        "The slaves killed some of their plantation owners in revenge for the punishments they did to them, and in total they burned about 1,000 plantations and killed hundreds of white and mixed race people.",
+        "Part of what started it was a rumor that the French king had already ended slavery."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "The uprising", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["22 August 1791", "The rebellion begins"],
+          ["About 1,000", "Plantations burned"],
+          ["The north", "Where the revolt started"],
+          ["A rumor", "That the king had abolished slavery"]
+        ] }
+    },
+    { id: "emancipation-1793", year: 1793, date: "29 August 1793", era: "freedom", scene: "chains", iso: "1793-08-29",
+      title: "Emancipation in the north",
+      summary: "Sonthonax frees the slaves in the north.",
+      body: [
+        "Sonthonax came to Saint-Domingue in September 1792 as a French commissioner and brought about 6,000 soldiers with him.",
+        "Spain and Britain were attacking so France really needed soldiers, and on August 29, 1793 Sonthonax freed the slaves in the north.",
+        "Historians say this is one of the most famous moments of the revolution but also one of the most argued about."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "Match the players", prompt: "Pick a name, then what it did.",
+        pairs: [
+          ["Sonthonax", "Declared freedom in the north"],
+          ["6,000", "Soldiers Sonthonax brought"],
+          ["Free people of color", "Got full political rights in 1792"],
+          ["Britain", "Invaded the colony in 1793"]
+        ] }
+    },
+    { id: "abolition-1794", year: 1794, date: "1794", era: "freedom", scene: "decree", iso: "1794-02-04",
+      title: "France ends slavery, Louverture switches sides",
+      summary: "France ends slavery and Louverture switches sides.",
+      body: [
+        "In 1794 France made it official that slavery was over in its colonies.",
+        "In May 1794 Louverture switched from Spain’s side to France’s side because France freed the slaves and Spain and Britain didn’t."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "scenario", title: "Your call: spring 1794", start: "a", nodes: {
+        a: { text: "You are Toussaint Louverture. You command an army on Spain’s side, and Spain still allows slavery. News arrives: France has abolished slavery.",
+             choices: [
+               { label: "Stay with Spain. They supply your army.", next: "spain" },
+               { label: "Join France and its abolition law.", next: "endGood" },
+               { label: "Disband your army.", next: "disband" } ] },
+        spain: { text: "Your soldiers ask what they are fighting for if Spain will not free them.",
+             choices: [
+               { label: "Switch to France.", next: "endGood" },
+               { label: "Stay with Spain anyway.", next: "endSpain" } ] },
+        endSpain: { end: true, outcome: "bad", text: "Fighting for Spain means fighting for a side that keeps people enslaved. Your soldiers start to leave." },
+        disband: { end: true, outcome: "bad", text: "Without an army, freedom depends on whoever wins. The British who invaded in 1793 kept slavery going where they held ground." },
+        endGood: { end: true, outcome: "good", text: "This is what happened. In May 1794 Louverture joined the French because France had freed the slaves and Spain and Britain had not." }
+      }}
+    },
+    { id: "british-withdraw", year: 1798, date: "1798", era: "freedom", scene: "ships", iso: "1798-09-01",
+      title: "The British withdraw",
+      summary: "Britain gives up after yellow fever kills most of its soldiers.",
+      body: [
+        "In 1793 Britain invaded Saint-Domingue because it wanted the richest colony in the Caribbean, and a lot of the planters were happy about it because they thought the British would protect their property.",
+        "About 20,000 British soldiers went there and around 60% of them died, mostly from yellow fever.",
+        "By 1796 Britain knew it couldn’t win and in 1798 it left after Louverture negotiated with them."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "The British in Saint-Domingue", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["1793", "Britain invades"],
+          ["Yellow fever", "Killed most British soldiers"],
+          ["About 60%", "Share of British soldiers who died"],
+          ["1798", "The British leave"]
+        ] }
+    },
+    { id: "constitution-1801", year: 1801, date: "July 1801", era: "freedom", scene: "island", iso: "1801-07-08",
+      title: "Louverture’s constitution",
+      summary: "Louverture’s constitution ends slavery forever.",
+      body: [
+        "In July 1801 Louverture signed a constitution for Saint-Domingue even though it was still a French colony.",
+        "It also made Louverture governor for life."
+      ],
+      quote: { text: "There can be no slaves on this territory; servitude has been forever abolished.", cite: "" },
+      image: "", imageCaption: "",
+      game: { type: "match", title: "The 1801 constitution", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["Article 3", "Ends slavery forever"],
+          ["Article 4", "Any job open to all, whatever their color"],
+          ["Governor for life", "Louverture’s new title"],
+          ["July 1801", "When it was signed"]
+        ] }
+    },
+    { id: "leclerc", year: 1802, date: "February 1802", era: "independence", scene: "fleet", iso: "1802-02-01",
+      title: "Napoleon sends an army",
+      summary: "Napoleon sends about 20,000 troops to take the colony back.",
+      body: [
+        "Napoleon sent an army of about 20,000 troops to beat Louverture and bring back the old colonial system.",
+        "They got to Cap Français in February 1802.",
+        "After a lot of fighting Louverture surrendered, then the French tricked him into a trap and arrested him, and he died in a French prison in April 1803."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "scenario", title: "Your call: 1802", start: "a", nodes: {
+        a: { text: "You are an officer in the revolutionary army. Louverture has been arrested and shipped to France. Word spreads that Napoleon plans to bring back slavery.",
+             choices: [
+               { label: "Keep serving the French.", next: "stay" },
+               { label: "Turn against the French.", next: "fight" } ] },
+        stay: { text: "The French begin disarming Black soldiers. Your men start slipping away to join the rebels.",
+             choices: [
+               { label: "Follow them.", next: "fight" },
+               { label: "Report them to the French.", next: "endBad" } ] },
+        endBad: { end: true, outcome: "bad", text: "Disarming the army was the first step toward bringing slavery back." },
+        fight: { text: "Yellow fever is destroying the French army, and Dessalines is leading the fight.",
+             choices: [
+               { label: "Join Dessalines.", next: "endGood" },
+               { label: "Fight on your own.", next: "alone" } ] },
+        alone: { text: "Small bands win skirmishes but can’t take the towns.",
+             choices: [ { label: "Join Dessalines after all.", next: "endGood" } ] },
+        endGood: { end: true, outcome: "good", text: "This is what happened. In 1802 Dessalines led the army against the French once it was obvious Napoleon wanted slavery back." }
+      }}
+    },
+    { id: "arcahaie", year: 1803, date: "18 May 1803", era: "independence", scene: "flag", iso: "1803-05-18",
+      title: "The flag of Arcahaie",
+      summary: "Dessalines rips the white out of the French flag.",
+      body: [
+        "On May 18, 1803 at the Congress of Arcahaie, Dessalines ripped the white out of a French flag.",
+        "The blue and red pieces got sewn together to make the first Haitian flag.",
+        "Haitians still celebrate May 18 as Flag Day."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "The first flag", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["White", "The color Dessalines tore out"],
+          ["Blue and red", "The colors that were left"],
+          ["Arcahaie", "Where the leaders met"],
+          ["18 May", "Haitian Flag Day"]
+        ] }
+    },
+    { id: "vertieres", year: 1803, date: "18 November 1803", era: "independence", scene: "fort", iso: "1803-11-18",
+      title: "The Battle of Vertières",
+      summary: "The last big battle and the French lose.",
+      body: [
+        "Yellow fever killed a huge part of the French army and the French commander was so brutal that the Black and mixed race armies teamed up against France.",
+        "On November 18, 1803 Dessalines’ army beat the French at Vertières and the French agreed to leave."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "order", title: "The final campaign", prompt: "Earliest at the top.",
+        items: [
+          { label: "Napoleon’s army lands at Cap Français", date: "Feb 1802" },
+          { label: "Yellow fever wrecks the French army", date: "Nov 1802" },
+          { label: "The Congress of Arcahaie", date: "May 1803" },
+          { label: "The Battle of Vertières", date: "Nov 1803" },
+          { label: "Independence declared", date: "Jan 1804" }
+        ] }
+    },
+    { id: "independence", year: 1804, date: "1 January 1804", era: "independence", scene: "sunrise", iso: "1804-01-01",
+      title: "Independence",
+      summary: "Dessalines declares Haiti independent.",
+      body: [
+        "On January 1, 1804 Dessalines declared independence and the country got the name Haiti.",
+        "That made Haiti the second independent republic in the Americas.",
+        "After that Dessalines ordered the killing of the white French people who were still there."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "A new country", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["1 January 1804", "Independence declared"],
+          ["Dessalines", "Declared independence"],
+          ["Haiti", "The country’s new name"],
+          ["Second", "Haiti’s place among independent republics in the Americas"]
+        ] }
+    }
+  ],
+
+  /* ---------------- Section: Three revolutions ---------------- */
+  revolutions: {
+    heading: "Three revolutions at once",
+    items: [
+      { title: "The slave revolt", years: "1791", era: "uprising",
+        text: "First the slaves rose up in August 1791 to fight for their own freedom." },
+      { title: "Louverture’s war", years: "1793–1802", era: "freedom",
+        text: "Then Louverture’s army fought for France against Spain and Britain and later had to fight Napoleon’s army when it came to take the colony back." },
+      { title: "The war for independence", years: "1802–1804", era: "independence",
+        text: "After Louverture got captured Dessalines took over and fought the French until Saint-Domingue became independent on January 1, 1804." }
+    ],
+    overlap: "These didn’t happen one at a time, they overlapped and the sides kept switching. Every group was fighting for something different at the same time, the slaves wanted freedom, the free people of color wanted equal rights and the rich whites wanted to run the colony themselves.",
+    sectionGame: {
+      title: "Who fought for what?",
+      game: { type: "match", title: "Who fought for what?", prompt: "Pick a group, then its goal.",
+        pairs: [
+          ["Enslaved people", "Freedom"],
+          ["Free people of color", "Equal rights"],
+          ["Rich whites", "Self-rule"],
+          ["Dessalines’ army", "Independence"]
+        ] }
+    }
+  },
+
+  /* ---------------- Section: People ---------------- */
+  peopleSection: {
+    heading: "The people who made it",
+    sectionGame: {
+      title: "Who did what?",
+      game: { type: "match", title: "Match the leaders", prompt: "Pick a name, then what they did.",
+        pairs: [
+          ["Jean-Jacques Dessalines", "Declared Haiti independent"],
+          ["Toussaint Louverture", "Signed the 1801 constitution"],
+          ["Léger-Félicité Sonthonax", "Freed the enslaved in the north"],
+          ["Napoleon Bonaparte", "Sent an army to retake the colony"]
+        ] }
+    }
+  },
+
+  people: [
+    { id: "dessalines", name: "Jean-Jacques Dessalines", years: "died 1806",
+      role: "Founder of Haiti", tone: "#7E1626",
+      figure: { hat: "bicorne", plume: "#D7263D", outfit: "uniform", face: "b" },
+      body: [
+        "After Louverture got captured Dessalines took over as the leader.",
+        "In 1802 when it was obvious Napoleon wanted to bring slavery back he turned against the French and led the army against them.",
+        "His army beat the French at Vertières in 1803 and on January 1, 1804 he declared Haiti independent.",
+        "After independence he ordered the killing of the white French people who were still in Haiti."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "Dessalines", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["1802", "Turns against the French"],
+          ["Vertières", "His army’s final victory"],
+          ["1 January 1804", "Declares independence"],
+          ["After independence", "Orders the killing of the remaining French"]
+        ] }
+    },
+    { id: "louverture", name: "Toussaint Louverture", years: "c. 1743–1803",
+      role: "Leader of the revolution", tone: "#1F2858",
+      figure: { hat: "bicorne", plume: "#F3EEDF", outfit: "uniform", scarf: true, face: "a" },
+      body: [
+        "Louverture was the main leader of the Haitian Revolution, he was born a slave and got legally freed in 1776.",
+        "He joined the revolt in 1791, built his own army and trained them to fight guerrilla style.",
+        "In 1793 he fought for Spain but in May 1794 he switched to France because France freed the slaves.",
+        "In 1802 the French tricked him and arrested him and he died in a French prison in 1803."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "Louverture", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["1776", "Legally freed"],
+          ["1793", "Fights on Spain’s side"],
+          ["May 1794", "Switches to France"],
+          ["1803", "Dies in a French prison"]
+        ] }
+    },
+    { id: "sonthonax", name: "Léger-Félicité Sonthonax", years: "1763–1813",
+      role: "French civil commissioner", tone: "#2E3874",
+      figure: { hat: "none", outfit: "civilian", hair: "queue", sash: true, face: "c" },
+      body: [
+        "Sonthonax was a French commissioner who got sent to Saint-Domingue in 1792 to make sure free people of color got equal rights.",
+        "The white colonists hated him and the poor whites even said he was starting a race war.",
+        "France needed soldiers to fight Spain and Britain so on August 29, 1793 he freed the slaves in the north."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "Sonthonax", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["September 1792", "Arrives in Saint-Domingue"],
+          ["About 6,000", "Soldiers he brought"],
+          ["29 August 1793", "Frees the enslaved in the north"],
+          ["Petits blancs", "Accused him of starting a race war"]
+        ] }
+    },
+    { id: "napoleon", name: "Napoleon Bonaparte", years: "1769–1821",
+      role: "Ruler of France", tone: "#3A3F5C",
+      figure: { hat: "bicorne", outfit: "greatcoat", face: "d" },
+      body: [
+        "Napoleon was the ruler of France and he wanted to bring back the old colonial system in Saint-Domingue.",
+        "He sent an army of about 20,000 troops that landed in 1802 to take the colony back.",
+        "Yellow fever and the revolutionaries destroyed his army which ended his plans for a big French empire in the Americas.",
+        "After he lost he sold Louisiana to the United States."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "Napoleon", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["Saint-Domingue", "The colony he wanted back"],
+          ["About 20,000", "Troops he sent"],
+          ["Yellow fever", "Destroyed his army"],
+          ["Louisiana", "Territory he sold after losing"]
+        ] }
+    }
+  ],
+
+  /* ---------------- Section: Legacy ---------------- */
+  legacySection: {
+    heading: "What Haiti’s revolution changed",
+    sectionGame: {
+      title: "After the revolution",
+      game: { type: "order", title: "After the revolution", prompt: "Earliest at the top.",
+        items: [
+          { label: "Napoleon sells Louisiana", date: "1803" },
+          { label: "Bolívar lands in Haiti", date: "1815" },
+          { label: "France demands 150 million francs", date: "1825" },
+          { label: "The United States recognizes Haiti", date: "1862" },
+          { label: "Haiti finishes paying the loans", date: "1947" },
+          { label: "Macron calls the debt unjust", date: "2025" }
+        ] }
+    }
+  },
+
+  legacy: [
+    { id: "indemnity", date: "1825–1947", era: "uprising",
+      title: "The price of recognition",
+      summary: "France made Haiti pay its old slave owners for its freedom.",
+      body: [
+        "In 1825 France said it would only recognize Haiti’s independence if Haiti paid 150 million francs to the old slave owners, and it sent warships so Haiti had to agree.",
+        "Haiti had to borrow money from French banks to pay it and didn’t finish paying until 1947.",
+        "It’s the only time former slaves were forced to pay the people who enslaved them for their freedom."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "The indemnity", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["150 million francs", "France’s demand in 1825"],
+          ["90 million francs", "The reduced total"],
+          ["1947", "Loans finally paid off"],
+          ["Charles X", "King who made the demand"]
+        ] }
+    },
+    { id: "modern-haiti", date: "2025", era: "independence",
+      title: "Haiti today: the debt 200 years later",
+      summary: "In 2025 France admitted the debt was unfair while Haiti is in a huge crisis.",
+      body: [
+        "In 2025 French President Macron admitted that France “subjected the people of Haiti to a heavy financial indemnity” but he didn’t deal with Haiti’s demands to get paid back.",
+        "Haiti is now the poorest country in the Western Hemisphere and gangs control 85% of its capital.",
+        "Because Haiti spent over 100 years paying France instead of building schools and hospitals, the debt helped leave it too weak to stop this crisis."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "Haiti today", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["17 April 2025", "200 years after the debt"],
+          ["Emmanuel Macron", "Called the debt unjust"],
+          ["85%", "Share of Port-au-Prince controlled by gangs"],
+          ["1947", "Last payments on the debt"]
+        ] }
+    },
+    { id: "us-response", date: "1798–1862", era: "freedom",
+      title: "How the United States responded",
+      summary: "The U.S. helped Louverture at first, then tried to isolate Haiti.",
+      body: [
+        "President John Adams helped Louverture against rivals that Britain was backing, partly to protect trade.",
+        "President Thomas Jefferson stopped that help, tried to isolate Haiti and wouldn’t recognize it as a country.",
+        "After Napoleon lost in Saint-Domingue he sold Louisiana to the U.S., and the U.S. didn’t recognize Haiti until 1862."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "The U.S. response", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["John Adams", "Aided Louverture"],
+          ["Thomas Jefferson", "Tried to isolate Haiti"],
+          ["1803", "The Louisiana Purchase"],
+          ["1862", "The U.S. recognizes Haiti"]
+        ] }
+    },
+    { id: "bolivar", date: "1815–1816", era: "independence",
+      title: "Haiti and Latin American independence",
+      summary: "Haiti helped Simón Bolívar as long as he ended slavery.",
+      body: [
+        "In December 1815 Simón Bolívar got forced out of Venezuela and came to Haiti.",
+        "Haiti’s president gave him weapons and soldiers as long as he ended slavery in the countries he freed, and Bolívar agreed."
+      ],
+      image: "", imageCaption: "",
+      game: { type: "match", title: "Pétion and Bolívar", prompt: "Pick an item, then its match.",
+        pairs: [
+          ["Haiti’s president", "Gave Bolívar weapons and soldiers"],
+          ["Les Cayes", "Where Bolívar landed"],
+          ["December 1815", "Bolívar arrives"],
+          ["Abolish slavery", "Pétion’s condition"]
+        ] }
+    }
+  ]
+};
+</script>
+
+<!-- =====================================================================
+     APP LOGIC  (you shouldn't need to edit below this line)
+     ===================================================================== -->
+<script>
+(() => {
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const shuffle = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const C = CONTENT;
+const CREDIT = C.site.illustrationCredit ? `<span class="credit">${C.site.illustrationCredit}</span>` : "";
+const tOf = e => {
+  if (e.iso) { const [y, m, d] = e.iso.split("-").map(Number); return y + ((m || 7) - 1) / 12 + ((d || 15) - 1) / 365; }
+  return (e.year || 1800) + .5;
+};
+
+/* =================================================================
+   DRAWING HELPERS
+   ================================================================= */
+const f1 = n => (+n).toFixed(1);
+const svgWrap = (name, inner, label) =>
+  `<svg class="scene scene-${name}" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid ${name === "island" ? "meet" : "slice"}" role="img" aria-label="${esc(label)}"><g filter="url(#fx-paint)">${inner}</g><rect width="480" height="300" fill="url(#fx-light)" style="mix-blend-mode:screen"/><rect width="480" height="300" fill="url(#fx-vig)"/><rect width="480" height="300" filter="url(#fx-grain)" opacity=".12" style="mix-blend-mode:overlay"/></svg>`;
+const flame = (x, y, s, c, d = 0) =>
+  `<g transform="translate(${x} ${y}) scale(${s})"><path class="a-flicker" style="animation-delay:${d}s;animation-duration:${(.38 + (d * 7 % 3) / 10).toFixed(2)}s" d="M0 0 C-13 -8 -11 -28 0 -48 C11 -28 13 -8 0 0Z" fill="${c}"/></g>`;
+const fire = (x, y, s = 1, d = 0) => `<g transform="translate(${x} ${y}) scale(${s})">${flame(0, 0, 1, "#FF7A2F", d)}${flame(-9, 2, .7, "#FF5A3C", d + .15)}${flame(9, 2, .75, "#FF5A3C", d + .3)}${flame(0, 1, .55, "#FFD36A", d + .1)}</g>`;
+const embers = (x, y, n, spread = 60) => { let o = ""; for (let i = 0; i < n; i++) o += `<circle class="a-ember" cx="${f1(x + ((i * 37) % spread) - spread / 2)}" cy="${y}" r="${1.2 + (i % 3) * .5}" fill="#FFC94A" style="animation-delay:${(i * .37 % 2.6).toFixed(2)}s"/>`; return o; };
+const waves = (y, color, cls = "", op = .5) => { let d = `M-60 ${y}`; for (let i = 0; i < 11; i++) d += " q15 -6 30 0 t30 0"; return `<path class="a-waves ${cls}" d="${d}" fill="none" stroke="${color}" stroke-width="2" opacity="${op}"/>`; };
+const cloud = (x, y, s, c, op, d = 0) => `<g transform="translate(${x} ${y}) scale(${s})" filter="url(#fx-soft)"><g class="a-drift" style="animation-delay:-${d}s" fill="${c}" opacity="${op}"><ellipse rx="44" ry="13"/><ellipse cx="-20" cy="-8" rx="22" ry="13"/><ellipse cx="10" cy="-14" rx="24" ry="17"/><ellipse cx="34" cy="-4" rx="18" ry="10"/></g></g>`;
+/* palm tree */
+const palm = (x, y, s = 1, c = "#070A1E", lean = 0) => {
+  const tx = 22 * lean;
+  let fr = "";
+  [-170, -145, -120, -95, -70, -45, -18, -132, -58].forEach((a, i) => {
+    const r = a * Math.PI / 180, L = 64 - (i % 3) * 9;
+    const ex = Math.cos(r) * L, ey = Math.sin(r) * L + 22, cx = Math.cos(r) * L * .55, cy = Math.sin(r) * L * .55 - 12;
+    fr += `<path d="M0 0 Q${f1(cx)} ${f1(cy - 5)} ${f1(ex)} ${f1(ey)} Q${f1(cx * .92)} ${f1(cy + 5)} 0 0Z"/>`;
+  });
+  let rings = ""; for (let k = 1; k < 9; k++) { const t = k / 9, px = tx * t * t, py = -128 * t; rings += `<path d="M${f1(px - 5)} ${f1(py)} q5 3 10 0" stroke="${c}" stroke-width="1.2" fill="none" opacity=".6"/>`; }
+  return `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><path d="M-5 0 Q${f1(tx * .3)} -64 ${f1(tx)} -128 L${f1(tx + 6)} -128 Q${f1(tx * .3 + 6)} -64 5 0Z"/>${rings}<g transform="translate(${f1(tx + 3)} -128)">${fr}<circle r="5"/><circle cx="4" cy="4" r="4"/></g></g>`;
+};
+/* human figures */
+const fig = (x, y, s = 1, pose = "stand", c = "#06091C", cls = "", d = 0) => {
+  const arms = { stand: "M-7 -36 Q-11 -26 -10 -16 M7 -36 Q11 -26 10 -16", up: "M-7 -38 Q-12 -50 -15 -62 M7 -38 Q12 -50 15 -62", musket: "M-7 -36 L3 -27 M7 -36 L11 -25", wave: "M-7 -36 Q-11 -26 -10 -16 M7 -38 Q12 -50 17 -58", walk: "M-7 -36 L-14 -22 M7 -36 L13 -22" }[pose];
+  const legs = pose === "walk" || pose === "musket" ? "M-3 -19 L-10 0 M3 -19 L8 0" : "M-4 -19 L-6 0 M4 -19 L6 0";
+  const gun = pose === "musket" ? `<line x1="-8" y1="-12" x2="22" y2="-60" stroke="${c}" stroke-width="2.4"/><line x1="20" y1="-58" x2="25" y2="-68" stroke="${c}" stroke-width="1.2"/>` : "";
+  return `<g transform="translate(${x} ${y}) scale(${s})"><g class="${cls}" style="animation-delay:${d}s" fill="${c}" stroke="${c}" stroke-linecap="round"><circle cy="-49" r="6.5" stroke="none"/><path d="M-3 -43 h6 v4 h-6z" stroke="none"/><path d="M-9 -40 Q0 -43 9 -40 L7 -18 L-7 -18Z" stroke="none"/><path d="${arms}" stroke-width="4.6" fill="none"/><path d="${legs}" stroke-width="5" fill="none"/>${gun}</g></g>`;
+};
+/* sailing ship with gunports and rigging */
+const sail = (mx, y, w, h, c = "#EFE7D2") => `<path d="M${mx - w / 2} ${y} L${mx + w / 2} ${y} Q${mx + w / 2 + 5} ${y + h / 2} ${mx + w / 2 - 2} ${y + h} L${mx - w / 2 + 2} ${y + h} Q${mx - w / 2 - 5} ${y + h / 2} ${mx - w / 2} ${y}Z" fill="${c}"/><path d="M${mx - w / 2 + 3} ${y + h * .55} Q${mx} ${y + h * .62} ${mx + w / 2 - 3} ${y + h * .55}" stroke="#C9BFA3" stroke-width=".8" fill="none"/>`;
+const flagT = `<g transform="translate(-30 -100)"><rect width="5" height="10" fill="#2B4ACB"/><rect x="5" width="5" height="10" fill="#fff"/><rect x="10" width="5" height="10" fill="#D7263D"/></g>`;
+const flagE = `<g transform="translate(-30 -100)"><rect width="16" height="10" fill="#C8102E"/><rect width="7" height="5" fill="#1D2B6B"/><path d="M0 0 L7 5 M7 0 L0 5" stroke="#fff" stroke-width=".8"/></g>`;
+const ship = (x, y, s, flag, cls, delay = 0, hull = "#2A1A10") => `
+  <g transform="translate(${x} ${y}) scale(${s})"><g class="${cls}" style="animation-delay:${delay}s"><g class="a-bob" style="animation-delay:${(delay * .7).toFixed(2)}s">
+    <path d="M-30 -4 V-96 M8 -4 V-108 M42 -4 V-84" stroke="${hull}" stroke-width="2.6"/>
+    <line x1="58" y1="-8" x2="98" y2="-28" stroke="${hull}" stroke-width="2.2"/>
+    <path d="M-30 -96 L-64 -4 M-30 -96 L8 -108 L42 -84 L98 -28 M8 -108 L60 -6 M-30 -96 L-12 -4 M42 -84 L28 -4" stroke="${hull}" stroke-width=".7" opacity=".75" fill="none"/>
+    ${sail(-30, -90, 32, 20)}${sail(-30, -66, 40, 26)}${sail(-30, -37, 44, 26, "#E7DEC6")}
+    ${sail(8, -102, 34, 22)}${sail(8, -76, 44, 30)}${sail(8, -43, 50, 32, "#E7DEC6")}
+    ${sail(42, -78, 28, 20)}${sail(42, -55, 36, 24)}${sail(42, -28, 38, 20, "#E7DEC6")}
+    <path d="M60 -10 L44 -74 L94 -28Z" fill="#E7DEC6"/>
+    <path d="M-66 -6 L58 -6 L74 -14 L68 2 Q60 18 40 20 L-46 20 Q-62 16 -66 -6Z" fill="${hull}"/>
+    <path d="M-62 3 L62 3" stroke="#C9A24A" stroke-width="1.6"/>
+    <path d="M-66 -6 L-70 -18 L-56 -14 L-52 -6Z" fill="${hull}"/>
+    ${[-46, -33, -20, -7, 6, 19, 32, 45].map(g => `<rect x="${g}" y="7" width="5" height="4" fill="#0B0705"/>`).join("")}
+    <circle cx="-62" cy="-12" r="2.2" fill="#FFD36A"/>
+    ${flag}
+  </g></g></g>`;
+
+/* =================================================================
+   ANIMATED SCENES  (one per timeline event; pick with `scene:` in CONTENT)
+   ================================================================= */
+const haitiFlag = (x, y, w) => `<g transform="translate(${x} ${y}) scale(${(w / 100).toFixed(3)})">
+  <rect width="100" height="30" fill="#00209F"/><rect y="30" width="100" height="30" fill="#D21034"/>
+  <rect x="36" y="19" width="28" height="22" fill="#fff"/>
+  <g transform="translate(50 30)">
+    <path d="M-1 5 L-11 -5 L-11 -1Z M-1 5 L-11 1 L-11 5Z" fill="#00209F"/><path d="M-1 5 L-11 -1 L-11 1Z M-1 5 L-11 5 L-10 7Z" fill="#D21034"/>
+    <path d="M1 5 L11 -5 L11 -1Z M1 5 L11 1 L11 5Z" fill="#00209F"/><path d="M1 5 L11 -1 L11 1Z M1 5 L11 5 L10 7Z" fill="#D21034"/>
+    <path d="M-11 8 L-3 6 M11 8 L3 6" stroke="#2B2B2B" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M-12 9.2 Q0 6 12 9.2 V10 H-12Z" fill="#2E7D32"/>
+    <path d="M-.6 8 L-.4 -5 L.5 -5 L.7 8Z" fill="#6D4C2F"/>
+    <g fill="#2E7D32"><path d="M0 -5 Q-5 -7 -8 -3 Q-4 -5.5 0 -5Z"/><path d="M0 -5 Q5 -7 8 -3 Q4 -5.5 0 -5Z"/><path d="M0 -5 Q-3 -9 -6 -8 Q-2 -7.5 0 -5Z"/><path d="M0 -5 Q3 -9 6 -8 Q2 -7.5 0 -5Z"/></g>
+    <path d="M-1.8 -8.6 Q0 -11.6 2 -8.6 L1.7 -7.4 L-1.7 -7.4Z" fill="#D21034"/>
+    <circle cx="-4" cy="7.4" r="1.2" fill="#B8892E"/><circle cx="4" cy="7.4" r="1.2" fill="#B8892E"/>
+    <path d="M-8 10.1 H8 L7 11 H-7Z" fill="#fff" stroke="#D21034" stroke-width=".35"/>
+  </g>
+  <rect width="100" height="60" fill="url(#fx-fold)"/>
+</g>`;
+const SCENES = {
+  storm() {
+    let rain = "";
+    for (let i = 0; i < 52; i++) { const x = (i * 97) % 540 - 30, y = (i * 53) % 300; rain += `<line x1="${x}" y1="${y}" x2="${x - 5}" y2="${y + 16}"/><line x1="${x + 30}" y1="${y - 300}" x2="${x + 25}" y2="${y - 284}"/>`; }
+    const ppl = [[150, 270, "up"], [176, 274, "stand"], [204, 268, "up"], [276, 268, "stand"], [302, 274, "up"], [328, 270, "wave"], [226, 276, "stand"], [258, 276, "up"]]
+      .map(([x, y, p], i) => fig(x, y, .9, p, "#05071A", p === "up" ? "a-cheer" : "", i * .12)).join("");
+    return svgWrap("storm", `
+      <defs><linearGradient id="sk-storm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#080C26"/><stop offset=".7" stop-color="#241736"/><stop offset="1" stop-color="#3A1E2E"/></linearGradient>
+      <radialGradient id="gl-storm"><stop offset="0" stop-color="#FFB347" stop-opacity=".9"/><stop offset="1" stop-color="#FF5A3C" stop-opacity="0"/></radialGradient>
+      <radialGradient id="mn-storm"><stop offset="0" stop-color="#C9D2FF" stop-opacity=".5"/><stop offset="1" stop-color="#C9D2FF" stop-opacity="0"/></radialGradient></defs>
+      <rect width="480" height="300" fill="url(#sk-storm)"/>
+      <circle cx="96" cy="64" r="60" fill="url(#mn-storm)"/><circle cx="96" cy="64" r="14" fill="#DDE2FF" opacity=".55"/>
+      ${cloud(110, 70, 1.4, "#1A1D3D", .95, 2)}${cloud(300, 46, 1.8, "#15183A", .95, 6)}${cloud(420, 84, 1.2, "#1C1F44", .9, 9)}
+      <rect class="a-flash" width="480" height="300" fill="#BFC8FF"/>
+      <polyline class="a-bolt" points="350,30 332,82 354,84 320,150 342,152 312,212" fill="none" stroke="#EEF1FF" stroke-width="3" stroke-linejoin="round"/>
+      <g class="a-rain" stroke="#8C97D8" stroke-width="1.3" opacity=".45">${rain}</g>
+      <path d="M0 236 Q80 214 160 230 T330 224 T480 232 V300 H0Z" fill="#0B0E26"/>
+      ${palm(30, 284, 1.25, "#05071A", -.4)}${palm(78, 290, 1, "#05071A", .3)}${palm(420, 288, 1.3, "#05071A", .45)}${palm(462, 292, .95, "#05071A", -.2)}
+      <ellipse class="a-glow" cx="240" cy="262" rx="170" ry="80" fill="url(#gl-storm)"/>
+      <rect y="276" width="480" height="24" fill="#05071A"/>
+      ${ppl}
+      ${fire(240, 278, 1.1)}${embers(240, 250, 8, 40)}`,
+      "A storm over a forest clearing at night, people gathered around a fire");
+  },
+  fire() {
+    let cane = ""; for (let x = 0; x < 480; x += 5) { const h = 30 + ((x * 13) % 26); cane += `<line x1="${x}" y1="300" x2="${x + 3}" y2="${300 - h}"/>`; }
+    let fl = ""; [20, 70, 300, 350, 400, 452].forEach((x, i) => { fl += fire(x, 268, 1.3 + (i % 3) * .25, i * .13); });
+    let sm = ""; [60, 150, 230, 330, 420].forEach((x, i) => sm += `<circle class="a-smoke" cx="${x}" cy="170" r="28" style="animation-delay:${i * .8}s"/>`);
+    return svgWrap("fire", `
+      <defs><linearGradient id="sk-fire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E0A18"/><stop offset=".6" stop-color="#7E2418"/><stop offset="1" stop-color="#E0622A"/></linearGradient></defs>
+      <rect width="480" height="300" fill="url(#sk-fire)"/>
+      <g fill="#4E3A44" opacity=".65">${sm}</g>
+      <path d="M0 222 Q90 190 180 214 T360 206 T480 214 V300 H0Z" fill="#33121A"/>
+      <g fill="#140709">
+        <path d="M150 238 V176 L208 150 L266 176 V238Z"/><rect x="146" y="174" width="124" height="6"/>
+        ${[160, 180, 200, 220, 240].map(x => `<rect x="${x}" y="190" width="10" height="16" fill="#FF9A3C" opacity=".8"/><rect x="${x}" y="214" width="10" height="16" fill="#FF7A2F" opacity=".7"/>`).join("")}
+        ${[156, 186, 216, 246].map(x => `<rect x="${x}" y="180" width="4" height="58"/>`).join("")}
+        <rect x="104" y="164" width="22" height="74"/><path d="M100 166 L115 150 L130 166Z"/>
+        <g transform="translate(115 160)"><g class="a-spin" style="animation-duration:9s"><path d="M0 0 L-4 -44 L4 -44Z M0 0 L44 -4 L44 4Z M0 0 L4 44 L-4 44Z M0 0 L-44 4 L-44 -4Z"/></g></g>
+      </g>
+      ${fire(208, 154, 1.6, .1)}${fire(180, 172, 1.1, .3)}${fire(244, 172, 1.2, .2)}
+      ${palm(30, 250, 1, "#140709", .2)}${palm(450, 246, 1.1, "#140709", -.3)}
+      <g stroke="#1B0A08" stroke-width="2">${cane}</g>
+      ${fl}${embers(208, 150, 10, 90)}${embers(380, 240, 8, 100)}
+      <rect y="286" width="480" height="14" fill="#140709"/>`,
+      "A plantation house and sugar mill burning above the cane fields");
+  },
+  chains() {
+    const link = (x, i) => i % 2 === 0 ? `<ellipse cx="${x}" cy="150" rx="22" ry="12" fill="none" stroke="url(#mt-chain)" stroke-width="7"/>` : `<rect x="${x - 19}" y="146" width="38" height="8" rx="4" fill="url(#mt-chain)"/>`;
+    let L = "", R = "";
+    for (let k = 0, x = 128; x <= 196; x += 34, k++) L += link(x, k);
+    for (let k = 1, x = 284; x <= 352; x += 34, k++) R += link(x, k);
+    L += `<rect x="206" y="146" width="22" height="8" rx="4" fill="url(#mt-chain)"/><path d="M238 138 A22 12 0 0 0 238 162" fill="none" stroke="url(#mt-chain)" stroke-width="7"/>
+      <g transform="translate(86 150) scale(.8)"><circle r="30" fill="none" stroke="url(#mt-chain)" stroke-width="10"/><rect x="-6" y="-38" width="12" height="10" rx="2" fill="#8F8AA6"/><rect x="24" y="-5" width="12" height="10" rx="2" fill="#8F8AA6"/></g>`;
+    R += `<path d="M242 138 A22 12 0 0 1 242 162" fill="none" stroke="url(#mt-chain)" stroke-width="7"/><rect x="252" y="146" width="22" height="8" rx="4" fill="url(#mt-chain)"/>
+      <g transform="translate(394 150) scale(.8)"><circle r="30" fill="none" stroke="url(#mt-chain)" stroke-width="10"/><rect x="-6" y="-38" width="12" height="10" rx="2" fill="#8F8AA6"/><rect x="-36" y="-5" width="12" height="10" rx="2" fill="#8F8AA6"/></g>`;
+    let sp = ""; for (let i = 0; i < 16; i++) { const a = i * 22.5 * Math.PI / 180, r2 = i % 2 ? 26 : 40; sp += `<line x1="${f1(Math.cos(a) * 10)}" y1="${f1(Math.sin(a) * 10)}" x2="${f1(Math.cos(a) * r2)}" y2="${f1(Math.sin(a) * r2)}"/>`; }
+    return svgWrap("chains", `
+      <defs><radialGradient id="gl-chain" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#F0B429" stop-opacity=".8"/><stop offset=".55" stop-color="#9A5A2A" stop-opacity=".25"/><stop offset="1" stop-color="#151C45" stop-opacity="0"/></radialGradient>
+      <linearGradient id="mt-chain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDEAF6"/><stop offset=".5" stop-color="#9C97B4"/><stop offset="1" stop-color="#5D5874"/></linearGradient>
+      <linearGradient id="sk-chain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0F1538"/><stop offset="1" stop-color="#2A2450"/></linearGradient></defs>
+      <rect width="480" height="300" fill="url(#sk-chain)"/>
+      <rect class="a-fade" style="animation-delay:.7s" width="480" height="300" fill="url(#gl-chain)"/>
+      <path class="a-fade" style="animation-delay:.9s" d="M0 250 L60 222 L120 240 L190 206 L250 236 L320 210 L390 236 L480 216 V300 H0Z" fill="#0B0F2A"/>
+      <g class="a-breakL">${L}</g><g class="a-breakR">${R}</g>
+      <g transform="translate(240 150)"><g class="a-sparks" stroke="#FFD27A" stroke-width="3" stroke-linecap="round">${sp}</g></g>`,
+      "A chain between two shackles snapping apart in a burst of light");
+  },
+  decree() {
+    let lines = ""; for (let i = 0; i < 9; i++) lines += `<line class="a-draw" pathLength="1" style="animation-delay:${1 + i * .12}s" x1="184" x2="${300 - (i % 3) * 22}" y1="${104 + i * 12}" y2="${104 + i * 12}" stroke="#7B7466" stroke-width="2.6" stroke-linecap="round"/>`;
+    const cols = [30, 90, 390, 450].map(x => `<g fill="#232B60"><rect x="${x - 12}" y="40" width="24" height="200"/><rect x="${x - 18}" y="32" width="36" height="10"/><rect x="${x - 18}" y="236" width="36" height="10"/>${[-6, 0, 6].map(dx => `<line x1="${x + dx}" y1="44" x2="${x + dx}" y2="234" stroke="#1A2150" stroke-width="2"/>`).join("")}</g>`).join("");
+    return svgWrap("decree", `
+      <defs><radialGradient id="gl-dec" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#3D4785"/><stop offset="1" stop-color="#121842"/></radialGradient>
+      <linearGradient id="pp-dec" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E4DCC4"/><stop offset=".5" stop-color="#F6F1E3"/><stop offset="1" stop-color="#E4DCC4"/></linearGradient></defs>
+      <rect width="480" height="300" fill="url(#gl-dec)"/>
+      <path d="M0 30 L240 0 L480 30 V36 H0Z" fill="#1A2150"/>
+      ${cols}
+      <rect x="0" y="252" width="480" height="48" fill="#2A1E18"/><rect x="0" y="252" width="480" height="5" fill="#3E2C22"/>
+      <g class="a-unroll"><rect x="160" y="44" width="160" height="214" rx="3" fill="url(#pp-dec)"/><rect x="152" y="38" width="176" height="12" rx="6" fill="#CFC3A1"/><rect x="152" y="252" width="176" height="12" rx="6" fill="#CFC3A1"/></g>
+      <line class="a-draw" pathLength="1" style="animation-delay:.9s" x1="196" x2="284" y1="76" y2="76" stroke="#2A2620" stroke-width="7" stroke-linecap="round"/>
+      <line class="a-draw" pathLength="1" style="animation-delay:.95s" x1="214" x2="266" y1="90" y2="90" stroke="#2A2620" stroke-width="3" stroke-linecap="round"/>
+      ${lines}
+      <g transform="translate(296 226)"><g class="a-stamp">
+        <path d="M-10 10 L-18 40 L-6 34 L0 44 L2 12Z" fill="#2B4ACB"/><path d="M8 10 L16 40 L4 34 L0 44 L0 12Z" fill="#D7263D"/>
+        <circle r="22" fill="#B3202F"/><circle r="15" fill="none" stroke="#7E1520" stroke-width="2"/><circle r="5" fill="#7E1520"/></g></g>
+      <g transform="translate(360 252)"><path d="M-14 0 L-10 -18 H10 L14 0Z" fill="#14182F"/><ellipse cy="-18" rx="10" ry="3" fill="#0A0C1C"/>
+        <path d="M2 -18 Q30 -70 60 -96 Q40 -60 6 -20Z" fill="#F3EEDF"/><path d="M4 -19 Q26 -58 52 -86" stroke="#C9BFA3" stroke-width="1" fill="none"/></g>`,
+      "A decree unrolling in a hall of columns and being stamped with a red seal");
+  },
+  ships() {
+    let glints = ""; for (let i = 0; i < 9; i++) glints += `<rect x="${360 + (i % 3) * 12 - i}" y="${232 + i * 7}" width="${40 - i * 3}" height="2" fill="#FFD27A" opacity="${(.7 - i * .06).toFixed(2)}"/>`;
+    return svgWrap("ships", `
+      <defs><linearGradient id="sk-ships" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3E2B66"/><stop offset=".75" stop-color="#E08A55"/><stop offset="1" stop-color="#F6B66A"/></linearGradient>
+      <linearGradient id="sea-ships" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B3A78"/><stop offset="1" stop-color="#141B48"/></linearGradient></defs>
+      <rect width="480" height="300" fill="url(#sk-ships)"/>
+      ${cloud(90, 60, 1.3, "#F2B98A", .5, 3)}${cloud(280, 90, 1, "#F8C99A", .45, 7)}
+      <circle cx="390" cy="224" r="44" fill="#FFD27A"/>
+      <rect y="222" width="480" height="78" fill="url(#sea-ships)"/>
+      ${glints}
+      <path d="M0 222 L0 176 Q24 160 46 176 Q60 168 74 190 L92 222Z" fill="#1E2A26"/>
+      ${palm(22, 190, .5, "#1E2A26", .3)}${palm(50, 182, .45, "#1E2A26", -.2)}
+      ${ship(120, 226, .8, flagE, "a-sailout", 0)}${ship(230, 230, .62, flagE, "a-sailout", .6)}${ship(318, 226, .48, flagE, "a-sailout", 1.1)}
+      <g fill="none" stroke="#2A2148" stroke-width="1.6" class="a-birds"><path d="M40 70 q6 -6 12 0 q6 -6 12 0"/><path d="M76 56 q5 -5 10 0 q5 -5 10 0"/></g>
+      ${waves(240, "#8FA2FF", "", .45)}${waves(260, "#8FA2FF", "slow", .3)}${waves(282, "#8FA2FF", "", .2)}`,
+      "British warships sailing away into the sunset");
+  },
+  island() {
+    const P = "M38 96 L90 88 L130 78 L170 76 L220 68 L270 70 L320 78 L370 86 L410 98 L440 112 L456 134 L432 160 L392 170 L352 176 L322 190 L290 200 L258 190 L230 186 L200 196 L160 200 L120 205 L80 209 L40 211 L16 202 L50 194 L90 189 L128 180 L150 164 L138 150 L108 140 L78 130 L54 118Z";
+    let grid = ""; for (let x = 0; x <= 480; x += 60) grid += `<line x1="${x}" y1="0" x2="${x}" y2="300"/>`; for (let y = 0; y <= 300; y += 60) grid += `<line x1="0" y1="${y}" x2="480" y2="${y}"/>`;
+    let ridges = ""; [[70, 104], [110, 98], [160, 92], [200, 100], [250, 90], [290, 104], [340, 112], [390, 122], [120, 194], [80, 200], [230, 160], [300, 150]].forEach(([x, y]) => ridges += `<path d="M${x - 9} ${y + 5} L${x} ${y - 5} L${x + 9} ${y + 5}" fill="none" stroke="#1A2E9A" stroke-width="1.6" opacity=".7"/>`);
+    let rose = ""; for (let i = 0; i < 8; i++) rose += `<path d="M0 0 L${i % 2 ? 4 : 5} -${i % 2 ? 14 : 24} L0 -${i % 2 ? 18 : 30}Z" transform="rotate(${i * 45})" fill="${i % 2 ? "#8FA2FF" : "#F3EEDF"}"/>`;
+    return svgWrap("island", `<rect x="-400" y="-400" width="1280" height="1100" fill="#17215A"/>
+      <defs><clipPath id="cp-isl"><path d="${P}"/></clipPath><linearGradient id="sea-isl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E2C70"/><stop offset="1" stop-color="#121842"/></linearGradient></defs>
+      <rect width="480" height="300" fill="url(#sea-isl)"/>
+      <g stroke="rgba(236,234,243,.07)">${grid}</g>
+      <path d="${P}" fill="none" stroke="#8FA2FF" stroke-width="8" opacity=".12"/>
+      <g clip-path="url(#cp-isl)"><rect x="0" y="0" width="202" height="300" fill="#3550D6" class="a-fade" style="animation-delay:1.3s"/>
+        <rect class="a-flood" style="animation-delay:2.1s" x="202" y="0" width="278" height="300" fill="#3550D6"/>
+        <g class="a-fade" style="animation-delay:2.4s">${ridges}</g></g>
+      <path class="a-draw long" pathLength="1" d="${P}" fill="none" stroke="#F3EEDF" stroke-width="2.5" stroke-linejoin="round"/>
+      <path class="a-fade" style="animation-delay:1.3s" d="M202 70 Q196 130 206 194" stroke="#F3EEDF" stroke-dasharray="4 5" fill="none"/>
+      <g class="a-pop" style="animation-delay:1.5s"><circle cx="118" cy="88" r="6" fill="#F0B429"/></g>
+      <text class="a-fade" style="animation-delay:1.6s" x="128" y="68" fill="#F3EEDF" font-size="13" font-family="Georgia,serif" font-style="italic">Le Cap</text>
+      <g class="a-pop" style="animation-delay:3.3s"><path d="M336 178 l4 9 10 1 -8 6 3 10 -9 -6 -9 6 3 -10 -8 -6 10 -1Z" fill="#F0B429"/></g>
+      <text class="a-fade" style="animation-delay:3.4s" x="296" y="226" fill="#F3EEDF" font-size="13" font-family="Georgia,serif" font-style="italic">Santo Domingo</text>
+      <g transform="translate(420 252) scale(.9)" opacity=".85">${rose}<circle r="4" fill="#F0B429"/></g>`,
+      "A map of Hispaniola filling in from west to east");
+  },
+  fleet() {
+    const ships = [[40, 212, .45, 0], [128, 230, .7, .3], [226, 218, .55, .5], [70, 262, .85, .8], [200, 270, .78, 1.1], [310, 246, .62, 1.4]].map(([x, y, s, d]) => ship(x, y, s, flagT, "a-arrive", d)).join("");
+    return svgWrap("fleet", `
+      <defs><linearGradient id="sk-fleet" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3F4970"/><stop offset="1" stop-color="#B8A994"/></linearGradient></defs>
+      <rect width="480" height="300" fill="url(#sk-fleet)"/>
+      ${cloud(90, 50, 1.6, "#5B6488", .7, 4)}${cloud(300, 70, 1.3, "#6A7293", .6, 8)}
+      <g fill="#4D4F66" opacity=".6"><circle class="a-smoke" cx="424" cy="146" r="24"/><circle class="a-smoke" style="animation-delay:1.2s" cx="448" cy="148" r="20"/><circle class="a-smoke" style="animation-delay:2.4s" cx="404" cy="152" r="22"/></g>
+      <path d="M346 202 Q388 146 428 154 Q462 144 480 164 V212 H346Z" fill="#26332B"/>
+      ${palm(366, 196, .45, "#1B2420", .3)}${palm(470, 170, .5, "#1B2420", -.3)}
+      <g fill="#1B2420"><rect x="392" y="168" width="12" height="16"/><rect x="408" y="160" width="10" height="24"/><path d="M406 160 l7 -10 7 10Z"/><rect x="424" y="170" width="16" height="14"/><rect x="444" y="166" width="10" height="18"/><path d="M442 166 l7 -9 7 9Z"/></g>
+      ${fire(416, 176, .7, .1)}${fire(440, 172, .55, .3)}${fire(398, 172, .5, .2)}${embers(420, 164, 6, 50)}
+      <rect y="202" width="480" height="98" fill="#26315C"/>
+      ${ships}
+      ${waves(214, "#B9C3F0", "", .35)}${waves(256, "#B9C3F0", "slow", .25)}${waves(288, "#B9C3F0", "", .2)}`,
+      "A large French fleet arriving at a burning coastal town");
+  },
+  flag() {
+    const crowd = [40, 70, 100, 130, 350, 380, 410, 440].map((x, i) => fig(x, 296, 1.1, i % 3 ? "up" : "musket", "#070A1E", i % 3 ? "a-cheer" : "", i * .1)).join("");
+    return svgWrap("flag", `
+      <defs><radialGradient id="gl-flag" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#34407F"/><stop offset="1" stop-color="#0F1430"/></radialGradient>
+      <linearGradient id="fold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".3" stop-color="#000" stop-opacity=".18"/><stop offset=".55" stop-color="#fff" stop-opacity=".12"/><stop offset=".8" stop-color="#000" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient></defs>
+      <rect width="480" height="300" fill="url(#gl-flag)"/>
+      ${palm(30, 270, .9, "#0B0F26", .3)}${palm(458, 270, 1, "#0B0F26", -.3)}
+      <rect x="0" y="272" width="480" height="28" fill="#0B0F26"/>
+      <rect x="146" y="30" width="6" height="250" rx="3" fill="#C9BFA3"/><circle cx="149" cy="28" r="7" fill="#F0B429"/>
+      <g class="a-wave">
+        <g class="a-joinR"><rect x="152" y="44" width="62" height="124" fill="#00209F"/><rect x="152" y="44" width="62" height="124" fill="url(#fold)"/></g>
+        <g class="a-tear"><path d="M214 44 H276 V168 H214 L218 150 L212 132 L218 112 L212 92 L218 70 L212 54Z" fill="#F3EEDF"/><rect x="214" y="44" width="62" height="124" fill="url(#fold)"/></g>
+        <g class="a-joinL"><rect x="276" y="44" width="62" height="124" fill="#D21034"/><rect x="276" y="44" width="62" height="124" fill="url(#fold)"/></g>
+      </g>
+      ${crowd}`,
+      "A crowd watching a French tricolor lose its white stripe as the blue and red join together");
+  },
+  fort() {
+    let cren = "M262 150 L262 106"; for (let x = 262; x < 410; x += 16) cren += ` L${x} 96 L${x + 8} 96 L${x + 8} 106 L${x + 16} 106`; cren += " L410 150Z";
+    let stones = ""; for (let r = 0; r < 3; r++) for (let x = 268 + (r % 2) * 10; x < 404; x += 20) stones += `<rect x="${x}" y="${112 + r * 12}" width="16" height="9" fill="none" stroke="#2C1A35" stroke-width="1"/>`;
+    const puffs = [[262, 128, 0], [300, 116, .7], [380, 116, 1.4], [212, 214, .4], [158, 244, 1.1], [250, 236, 1.8]].map(([x, y, d]) => `<circle class="a-puff" style="animation-delay:${d}s" cx="${x}" cy="${y}" r="14" fill="#D9D2CC"/><circle class="a-blink" style="animation-delay:${d}s" cx="${x}" cy="${y}" r="5" fill="#FFC94A"/>`).join("");
+    const men = [0, 24, 48, 72, 96, 120, 150].map((x, i) => fig(26 + x, 286 - i * 4, .9, "musket", "#0E1026")).join("");
+    const horse = `<g transform="translate(200 262)"><g class="a-gallop"><path d="M-30 -2 Q-34 -26 -14 -30 L18 -30 Q30 -30 34 -42 L40 -50 Q46 -48 44 -40 L46 -30 Q40 -24 32 -24 Q30 -10 24 -4 L28 18 L24 18 L18 0 Q0 2 -14 0 L-18 18 L-22 18 L-22 -2 Q-34 4 -40 -8 Q-34 -6 -30 -2Z" fill="#0E1026"/>
+      <circle cx="-2" cy="-58" r="6" fill="#0E1026"/><path d="M-8 -52 L4 -52 L6 -32 L-8 -32Z" fill="#0E1026"/><path d="M4 -48 L22 -66" stroke="#0E1026" stroke-width="3" stroke-linecap="round"/><path d="M22 -66 L30 -70" stroke="#C9BFA3" stroke-width="1.6"/><path d="M-10 -64 Q-2 -72 8 -64 Z" fill="#0E1026"/></g></g>`;
+    return svgWrap("fort", `
+      <defs><linearGradient id="sk-fort" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1434"/><stop offset=".7" stop-color="#B4483A"/><stop offset="1" stop-color="#E9873E"/></linearGradient></defs>
+      <rect width="480" height="300" fill="url(#sk-fort)"/>
+      ${cloud(120, 54, 1.4, "#7A3346", .6, 2)}${cloud(380, 40, 1.1, "#8A3C48", .5, 6)}
+      <path d="M150 300 Q220 180 262 150 L410 150 Q450 170 480 210 V300Z" fill="#2A1830"/>
+      <path d="${cren}" fill="#1C1024"/>${stones}
+      <rect x="318" y="124" width="14" height="26" fill="#0D0612"/>
+      ${[[262, 128], [410, 128]].map(([x, y]) => `<rect x="${x - 18}" y="${y - 3}" width="18" height="6" fill="#0D0612" transform="${x > 300 ? `translate(36 0)` : ""}"/>`).join("")}
+      <rect x="335" y="44" width="3" height="54" fill="#C9BFA3"/>
+      <g class="a-lower"><rect x="338" y="46" width="12" height="20" fill="#2B4ACB"/><rect x="350" y="46" width="12" height="20" fill="#F3EEDF"/><rect x="362" y="46" width="12" height="20" fill="#D7263D"/></g>
+      <g class="a-raise hid"><g class="a-wave">${haitiFlag(338, 46, 42)}</g></g>
+      ${palm(440, 214, .7, "#1C1024", -.3)}
+      ${puffs}
+      <path d="M0 300 L0 262 Q80 250 170 280 L190 300Z" fill="#140C1C"/>
+      <g class="a-march">${men}${horse}</g>`,
+      "Revolutionary soldiers and a rider charging a hilltop fort through cannon smoke; the French flag comes down");
+  },
+  sunrise() {
+    let rays = ""; for (let i = 0; i < 12; i++) rays += `<path d="M0 -58 L6 -150 L-6 -150Z" transform="rotate(${i * 30})" fill="#FFE2A0" opacity=".35"/>`;
+    const huts = [70, 112, 410].map(x => `<g transform="translate(${x} 262)"><rect x="-14" y="-16" width="28" height="16" fill="#151A40"/><path d="M-19 -15 L0 -32 L19 -15Z" fill="#151A40"/><rect x="-4" y="-10" width="8" height="10" fill="#F6C35B" opacity=".6"/></g>`).join("");
+    const crowd = [150, 176, 200, 226, 252, 280, 306, 332].map((x, i) => fig(x, 296, 1, i % 2 ? "up" : "wave", "#090C24", "a-cheer", i * .11)).join("");
+    return svgWrap("sunrise", `
+      <defs><linearGradient id="sk-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A2560"/><stop offset=".55" stop-color="#C85A54"/><stop offset="1" stop-color="#F6C35B"/></linearGradient></defs>
+      <rect width="480" height="300" fill="url(#sk-sun)"/>
+      <g transform="translate(240 150)"><g class="a-rise"><g class="a-spin">${rays}</g><circle r="44" fill="#FFD978"/></g></g>
+      ${cloud(100, 90, 1.2, "#F3A48A", .55, 3)}${cloud(370, 70, 1, "#F6B79A", .5, 8)}
+      <g class="a-birds" fill="none" stroke="#2A2148" stroke-width="2"><path d="M40 70 q6 -6 12 0 q6 -6 12 0"/><path d="M76 56 q5 -5 10 0 q5 -5 10 0"/><path d="M60 92 q4 -4 8 0 q4 -4 8 0"/></g>
+      <path d="M0 210 L60 150 L110 190 L170 122 L230 186 L290 140 L350 180 L410 132 L480 170 V300 H0Z" fill="#8C5A7A"/>
+      <path d="M0 240 L70 190 L130 230 L200 176 L260 226 L330 186 L400 222 L480 196 V300 H0Z" fill="#4B3A6E"/>
+      <path d="M0 300 L0 266 L80 236 L160 262 L250 232 L300 242 L360 162 L420 232 L480 252 V300Z" fill="#1E2350"/>
+      ${palm(28, 272, .8, "#151A40", .3)}${palm(456, 276, .9, "#151A40", -.35)}
+      ${huts}
+      <rect x="358" y="88" width="3.5" height="76" fill="#C9BFA3"/><circle cx="359.7" cy="88" r="3" fill="#F0B429"/>
+      <g class="a-raise"><g class="a-wave">${haitiFlag(361.5, 94, 54)}</g></g>
+      <rect y="284" width="480" height="16" fill="#090C24"/>
+      ${crowd}`,
+      "A crowd celebrating as the sun rises over the mountains and a blue and red flag goes up");
+  }
+};
+const sceneFor = name => (SCENES[name] || SCENES.sunrise)();
+
+/* =================================================================
+   PORTRAITS  (profile silhouettes in a gilt oval, in the style of 1790s
+   portrait silhouettes; set `image:` on a person to use a real portrait)
+   ================================================================= */
+function portraitSVG(p) {
+  const f = p.figure || {}, id = p.id, ink = "#141729", gold = "#C9A24A", goldL = "#E9CC7A";
+  const face = { a: [0, 2, 0], b: [1, 3, 2], c: [3, 0, -1], d: [4, -1, 0] }[f.face || "a"];
+  const [n, l, ch] = face;
+  const head = `M112 330 C116 300 122 284 118 262 C98 250 86 222 88 192 C88 140 120 106 166 104 C200 104 222 124 226 152
+    C227 160 226 164 229 170 C234 180 ${238 + n} 194 ${240 + n} 202 C${241 + n} 207 236 210 230 210
+    C232 214 ${233 + l} 217 ${232 + l} 221 C229 224 229 225 ${232 + l} 228 C${233 + l} 233 229 238 225 240
+    C223 244 ${226 + ch} 250 ${227 + ch} 256 C${228 + ch} 266 221 274 206 276 C194 278 186 286 184 298 C183 310 186 320 190 330Z`;
+  const bust = `M0 400 C10 340 64 304 118 298 L190 300 C246 306 286 336 300 400Z`;
+  let outfit = "", hat = "", hair = "";
+  if (f.outfit === "uniform" || f.outfit === "greatcoat") {
+    const coat = f.outfit === "greatcoat" ? "#5B5F6E" : ink;
+    outfit = `<path d="${bust}" fill="${coat}"/>
+      ${f.outfit === "greatcoat" ? `<path d="M188 300 C214 312 236 330 246 380 L214 380 C206 346 196 322 184 306Z" fill="#474A58"/><path d="M118 300 C112 330 120 360 128 380" stroke="#3E4150" stroke-width="3" fill="none"/>` : ""}
+      <path d="M114 300 L116 274 C150 280 176 284 192 286 L194 306 C166 306 140 304 114 300Z" fill="${ink}" stroke="${gold}" stroke-width="2"/>
+      <path d="M124 290 q6 -6 12 0 q6 -6 12 0 q6 -6 12 0 q6 -6 12 0" stroke="${goldL}" stroke-width="1.4" fill="none"/>
+      <path d="M186 288 C192 292 196 300 196 306 L184 304Z" fill="#EDE6D3"/>
+      <path d="M194 306 C214 320 232 344 240 380" stroke="${gold}" stroke-width="2.4" fill="none"/>
+      ${[322, 340, 358].map((y, i) => `<circle cx="${214 + i * 9}" cy="${y}" r="3.2" fill="${goldL}"/>`).join("")}
+      <g transform="translate(150 312)"><ellipse rx="40" ry="10" fill="${gold}"/><ellipse rx="40" ry="10" fill="none" stroke="${goldL}" stroke-width="1.2"/>
+        ${[-34, -26, -18, -10, -2, 6, 14, 22, 30].map(dx => `<path d="M${dx} 6 q1 10 -1 20" stroke="${gold}" stroke-width="2.6" fill="none"/>`).join("")}</g>`;
+  } else if (f.outfit === "civilian") {
+    outfit = `<path d="${bust}" fill="#22263F"/>
+      <path d="M112 302 C108 284 114 270 122 264 L150 290 C134 300 122 304 112 302Z" fill="#2E3352"/>
+      <path d="M182 270 C196 278 202 296 200 314 L186 306 C186 292 184 282 178 276Z" fill="#2E3352"/>
+      <path d="M118 262 C140 272 170 276 186 274 C192 286 194 300 190 314 C170 316 140 306 120 296Z" fill="#F1ECDD"/>
+      <path d="M186 300 C196 306 200 318 196 330 C190 322 186 314 184 306Z" fill="#F1ECDD"/>
+      ${f.sash ? `<g><path d="M70 330 L250 360 L246 378 L64 348Z" fill="#2B4ACB"/><path d="M66 342 L248 372 L246 380 L62 352Z" fill="#F3EEDF"/><path d="M62 352 L246 380 L244 392 L60 364Z" fill="#D7263D"/></g>` : ""}`;
+  }
+  if (f.hair === "queue") hair = `
+    <path d="M90 196 C82 160 104 116 150 108 C120 120 104 150 104 186 C104 210 112 226 122 238 C106 236 94 220 90 196Z" fill="${ink}"/>
+    <path d="M96 222 C88 244 84 268 90 300 C96 300 100 270 104 240Z" fill="${ink}"/>
+    <path d="M90 232 C78 226 74 240 84 244 C78 252 92 256 96 246 C102 254 112 242 100 236Z" fill="#3A3F66"/>
+    <path d="M118 176 c-10 2 -12 12 -2 14 c-10 2 -10 12 0 14" stroke="#3A3F66" stroke-width="3" fill="none"/>`;
+  if (f.hat === "bicorne") hat = `
+    ${f.scarf ? `<path d="M92 176 C96 146 120 132 160 134 C196 136 220 146 228 158 C200 152 140 150 100 182Z" fill="#B81E33"/>
+      <path d="M100 168 C130 150 180 146 220 156" stroke="${goldL}" stroke-width="2" fill="none"/>
+      <path d="M96 192 C82 206 80 230 88 248 C94 236 98 222 104 208Z" fill="#B81E33"/>` : ""}
+    <path d="M70 160 C82 88 196 64 248 128 C214 116 116 120 70 160Z" fill="${ink}"/>
+    <path d="M76 154 C116 124 206 116 242 128" stroke="${gold}" stroke-width="3" fill="none"/>
+    <circle cx="200" cy="112" r="10" fill="#2B4ACB"/><circle cx="200" cy="112" r="7" fill="#F3EEDF"/><circle cx="200" cy="112" r="3.5" fill="#D7263D"/>
+    ${f.outfit === "greatcoat" ? `<path d="M196 104 L204 104 L203 92 L197 92Z" fill="${gold}"/>` : ""}
+    ${f.plume ? `<g fill="${f.plume}"><path d="M150 92 C130 52 150 24 176 30 C164 40 160 62 166 90Z"/><path d="M162 90 C160 56 182 36 204 46 C188 52 178 68 176 92Z"/><path d="M140 96 C112 72 118 44 140 40 C134 56 140 76 152 94Z"/></g>` : ""}`;
+  return `<svg class="portrait" viewBox="0 0 300 380" role="img" aria-label="Silhouette portrait representing ${esc(p.name)}">
+    <defs>
+      <radialGradient id="pp-${id}" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#F7F1E0"/><stop offset="1" stop-color="#D8CBA8"/></radialGradient>
+      <linearGradient id="gf-${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2D98C"/><stop offset=".5" stop-color="#B8892E"/><stop offset="1" stop-color="#E8C46A"/></linearGradient>
+      <clipPath id="cp-${id}"><ellipse cx="150" cy="190" rx="122" ry="156"/></clipPath>
+    </defs>
+    <ellipse cx="150" cy="190" rx="134" ry="168" fill="url(#gf-${id})"/>
+    <ellipse cx="150" cy="190" rx="126" ry="160" fill="none" stroke="#7A5A1C" stroke-width="2"/>
+    <ellipse cx="150" cy="190" rx="122" ry="156" fill="url(#pp-${id})"/>
+    <g clip-path="url(#cp-${id})"><g transform="translate(30 42) scale(.82)">${outfit}${hair}<path d="${head}" fill="${ink}"/>${hat}</g><rect width="300" height="380" filter="url(#fx-grain)" opacity=".28" style="mix-blend-mode:multiply"/><ellipse cx="150" cy="190" rx="122" ry="156" fill="url(#fx-vig)" opacity=".6"/></g>
+    <ellipse cx="150" cy="190" rx="122" ry="156" fill="none" stroke="#8A6A24" stroke-width="1.5"/>
+    <path d="M128 18 C138 4 162 4 172 18 C162 14 138 14 128 18Z" fill="url(#gf-${id})"/>
+  </svg>`;
+}
+
+/* ---------------- page registry ---------------- */
+const PAGES = {}, GROUPS = {};
+function reg(group, crumb, list) { GROUPS[group] = list.map(p => p.id); list.forEach(p => PAGES[p.id] = { ...p, group, crumb }); }
+reg("context", "Saint-Domingue", [C.contextPage]);
+reg("timeline", "Timeline", C.events);
+reg("people", "People", C.people.map(p => ({ ...p, title: p.name, date: p.years })));
+reg("legacy", "Legacy", C.legacy);
+const eraColor = era => (C.eras[era] || {}).color || "var(--red)";
+
+/* ---------------- score ---------------- */
+const gameMax = g => g.type === "order" ? 30 : 20;
+const best = {};
+const total = () => Object.values(best).reduce((a, b) => a + b, 0);
+function award(id, pts) {
+  const prev = best[id] || 0;
+  if (pts > prev) {
+    best[id] = pts;
+    toast(`+${pts - prev} points`);
+    const s = $("#score");
+    s.innerHTML = `<b>${total()}</b> points`;
+    s.classList.remove("bump"); void s.offsetWidth; s.classList.add("bump");
+  }
+  $$(`[data-page="${id}"]`).forEach(el => el.classList.add("is-done", "done"));
+}
+let toastT;
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 1800);
+}
+
+/* ---------------- odometer ---------------- */
+function makeOdo(el, value) {
+  el.innerHTML = String(value).split("").map((_, i) =>
+    `<span class="d"><span class="s" style="transition-delay:${i * 70}ms">${[...Array(10).keys()].map(n => `<span>${n}</span>`).join("")}</span></span>`).join("");
+  setOdo(el, value);
+}
+function setOdo(el, value) {
+  String(value).split("").forEach((d, i) => { const s = $$(".s", el)[i]; if (s) s.style.transform = `translateY(-${(+d) * 10}%)`; });
+  el.setAttribute("aria-label", value);
+}
+
+function visualFor(p) {
+  if (p.group === "timeline") return `<div class="page-visual play reveal">${p.image ? `<img src="${p.image}" alt="${esc(p.title)}">${p.imageCaption ? `<span class="credit">${p.imageCaption}</span>` : ""}` : sceneFor(p.scene) + CREDIT}</div>`;
+  if (p.group === "people") return `<div class="page-visual portrait-box reveal" style="--tone:${p.tone}">${p.image ? `<img src="${p.image}" alt="Portrait of ${esc(p.name)}">${p.imageCaption ? `<span class="credit">${p.imageCaption}</span>` : ""}` : portraitSVG({ ...p, id: p.id + "-pg" }) + CREDIT}</div>`;
+  if (p.image) return `<div class="page-visual reveal"><img src="${p.image}" alt="${esc(p.title)}">${p.imageCaption ? `<span class="credit">${p.imageCaption}</span>` : ""}</div>`;
+  return "";
+}
+
+/* =================================================================
+   RENDER SECTIONS
+   ================================================================= */
+$("#brand").textContent = C.site.brand;
+
+/* hero */
+const heroOdo = $("#hero-odo");
+$("#hero-bgs").innerHTML = C.hero.map((s, i) =>
+  `<div class="hero-bg${i ? "" : " active"}" style="background:radial-gradient(70% 80% at 78% 38%, ${s.glow} 0%, transparent 70%), radial-gradient(50% 60% at 10% 100%, ${s.glow}55 0%, transparent 70%), var(--night)"></div>`).join("");
+$("#hero-slides").innerHTML = C.hero.map((s, i) => `
+  <div class="slide${i ? "" : " active"}" style="--slide-accent:${s.accent}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${C.hero.length}" ${i ? 'aria-hidden="true"' : ""}>
+    <p class="slide-date">${s.date}</p>
+    ${i === 0 ? `<h1>${s.title}</h1>` : `<h2 class="h1">${s.title}</h2>`}
+    ${s.text ? `<p class="slide-text">${s.text}</p>` : ""}
+    <button class="btn primary" data-cta="${i}">${s.cta.label}</button>
+  </div>`).join("");
+$("#hero-years").innerHTML = C.hero.map((s, i) =>
+  `<button class="hc-year${i ? "" : " active"}" role="tab" aria-selected="${!i}" data-i="${i}">${s.year}<span class="fill"></span></button>`).join("");
+makeOdo(heroOdo, C.hero[0].year);
+
+/* context */
+const cx = C.context;
+$("#ctx-text").innerHTML = `<h2>${cx.heading}</h2>
+  <h3>${cx.hierarchyTitle}</h3>
+  <ul class="groups">${cx.groups.map(g => `<li><b>${g.name}</b><p>${g.def}</p><p class="want"><i>Wanted:</i> ${g.wanted}</p></li>`).join("")}</ul>
+  <h3>${cx.frTitle}</h3>${cx.fr.map(t => `<p>${t}</p>`).join("")}
+  <button class="btn" data-open="${C.contextPage.id}" data-page="${C.contextPage.id}">${cx.playLabel}</button>`;
+const dotColors = { enslaved: "var(--ink)", free: "var(--blue)", white: "transparent" };
+let dotsHTML = "", dn = 0;
+cx.population.forEach(g => { for (let i = 0; i < g.dots; i++) dotsHTML += `<span class="dot ${g.key}" style="transition-delay:${(dn++) * 12}ms"></span>`; });
+$("#ctx-dots").innerHTML = `<h3>${cx.dotsTitle}</h3><p class="cap">${cx.dotsCaption}</p>
+  <div class="dots" id="dots" role="img" aria-label="${cx.population.map(g => `${g.label}: ${g.count}`).join(", ")}">${dotsHTML}</div>
+  <ul class="legend">${cx.population.map(g => `<li><i style="background:${dotColors[g.key]};${g.key === "white" ? "box-shadow:inset 0 0 0 2px var(--ink-2)" : ""}"></i><span><strong>${g.label}</strong>, ${g.count}</span></li>`).join("")}</ul>`;
+
+/* timeline */
+const EV = C.events;
+$("#tl-head").innerHTML = `<h2>${C.timeline.heading}</h2>`;
+$("#tl-track").innerHTML = EV.map((e, i) => `
+  <article class="panel" data-i="${i}" data-page="${e.id}" style="--c:${eraColor(e.era)}" aria-label="${esc(e.date)}: ${esc(e.title)}">
+    <div class="scene-box">${e.image ? `<img src="${e.image}" alt="${esc(e.title)}">${e.imageCaption ? `<span class="credit">${e.imageCaption}</span>` : ""}` : sceneFor(e.scene) + CREDIT}</div>
+    <div class="panel-text">
+      <p class="panel-date">${e.date}</p>
+      <h3>${e.title}</h3>
+      <p>${e.summary}</p>
+      <div class="panel-actions"><button class="btn small" data-open="${e.id}">Play</button><span class="played">Played ✓</span></div>
+    </div>
+  </article>`).join("");
+const AX_MIN = 1790.8, AX_MAX = 1804.35, pct = t => (t - AX_MIN) / (AX_MAX - AX_MIN) * 100;
+const AXP = [];
+EV.forEach((e, i) => { let p = pct(tOf(e)); if (i && p < AXP[i - 1] + 2.8) p = AXP[i - 1] + 2.8; AXP.push(p); });
+const eraKeys = [...new Set(EV.map(e => e.era))];
+let axHTML = `<div class="ax-line"></div>`;
+eraKeys.forEach((k, j) => {
+  const start = pct(tOf(EV.find(e => e.era === k)));
+  const nextK = eraKeys[j + 1];
+  const end = nextK ? pct(tOf(EV.find(e => e.era === nextK))) : 100;
+  const first = EV.findIndex(e => e.era === k);
+  axHTML += `<div class="ax-band" style="--c:${eraColor(k)};left:${start}%;width:${end - start}%"></div>
+    <button class="ax-era" style="--c:${eraColor(k)};left:${start}%" data-go="${first}">${C.eras[k].short || C.eras[k].label}</button>`;
+});
+axHTML += `<div class="ax-fill" id="ax-fill"></div>`;
+for (let y = 1791; y <= 1804; y++) axHTML += `<span class="ax-tick${(y - 1791) % 3 ? " minor" : ""}" style="left:${pct(y)}%">${y}</span>`;
+axHTML += EV.map((e, i) => `<button class="ax-dot" style="--c:${eraColor(e.era)};left:${AXP[i]}%" data-go="${i}" data-page="${e.id}" aria-label="${esc(e.date)}: ${esc(e.title)}"></button>`).join("");
+$("#tl-axis").innerHTML = axHTML;
+makeOdo($("#tl-odo"), EV[0].year);
+
+/* three revolutions */
+const RV = C.revolutions;
+$("#rv-head").innerHTML = `<h2>${RV.heading}</h2>`;
+$("#rv-grid").innerHTML = RV.items.map((r, i) => `<article class="rev" style="--c:${eraColor(r.era)}"><span class="rev-n">${i + 1}</span><h3>${r.title}</h3><p class="rev-years">${r.years}</p><p>${r.text}</p></article>`).join("");
+$("#rv-overlap").textContent = RV.overlap;
+
+/* people */
+$("#pp-head").innerHTML = `<h2>${C.peopleSection.heading}</h2>`;
+$("#pp-grid").innerHTML = C.people.map(p => `
+  <button class="person" data-open="${p.id}" data-page="${p.id}" style="--tone:${p.tone}">
+    ${p.image ? `<img class="portrait-img" src="${p.image}" alt="">` : portraitSVG(p)}
+    <span class="played">Played ✓</span>
+    <span class="person-text">
+      <span class="person-years">${p.years}</span>
+      <h3>${p.name}</h3>
+      <span class="person-role">${p.role}</span>
+      <span class="play">Play</span>
+    </span>
+    ${p.image ? (p.imageCaption ? `<span class="credit">${p.imageCaption}</span>` : "") : CREDIT}
+  </button>`).join("");
+
+/* legacy */
+$("#lg-head").innerHTML = `<h2>${C.legacySection.heading}</h2>`;
+$("#lg-grid").innerHTML = C.legacy.map(l => `
+  <button class="leg" data-open="${l.id}" data-page="${l.id}" style="--c:${eraColor(l.era)}">
+    <span class="leg-date">${l.date}</span><h3>${l.title}</h3><p>${l.summary}</p>
+    <span class="more">Play</span> <span class="played">Played ✓</span>
+  </button>`).join("");
+
+/* section games */
+[["#sg-timeline", C.timeline.sectionGame, "sec-timeline"],
+ ["#sg-revolutions", RV.sectionGame, "sec-revolutions"],
+ ["#sg-people", C.peopleSection.sectionGame, "sec-people"],
+ ["#sg-legacy", C.legacySection.sectionGame, "sec-legacy"]].forEach(([sel, sg, id]) => {
+  const host = $(sel);
+  host.innerHTML = `<h3>${sg.title}</h3><div class="game"></div>`;
+  mountGame($(".game", host), sg.game, id);
+});
+
+/* footer */
+$("#foot").innerHTML = `<div><h4>${C.site.brand}</h4><p>${C.site.team}<br>${C.site.course}</p></div>`;
+
+/* =================================================================
+   HERO SLIDESHOW
+   ================================================================= */
+const hero = $("#hero");
+let cur = 0;
+hero.style.setProperty("--slide-ms", CONFIG.slideDuration + "ms");
+if (!reduced) hero.classList.add("autoplay");
+function go(i) {
+  i = (i + C.hero.length) % C.hero.length;
+  if (i === cur) return;
+  cur = i;
+  $$(".slide").forEach((s, k) => { s.classList.toggle("active", k === i); s.toggleAttribute("aria-hidden", k !== i); });
+  $$(".hero-bg").forEach((s, k) => s.classList.toggle("active", k === i));
+  $$(".hc-year").forEach((b, k) => {
+    b.classList.toggle("active", k === i); b.classList.toggle("past", k < i);
+    b.setAttribute("aria-selected", k === i);
+    const f = $(".fill", b); f.style.animation = "none"; void f.offsetWidth; f.style.animation = "";
+  });
+  setOdo(heroOdo, C.hero[i].year);
+}
+$("#hero-years").addEventListener("click", e => { const b = e.target.closest(".hc-year"); if (b) go(+b.dataset.i); });
+$("#hero-years").addEventListener("animationend", e => { if (e.target.classList.contains("fill")) go(cur + 1); });
+$("#hero-prev").onclick = () => go(cur - 1);
+$("#hero-next").onclick = () => go(cur + 1);
+$("#hero-slides").addEventListener("click", e => {
+  const b = e.target.closest("[data-cta]"); if (!b) return;
+  const cta = C.hero[+b.dataset.cta].cta;
+  if (cta.page) openPage(cta.page, b); else if (cta.scroll) $(cta.scroll).scrollIntoView();
+});
+let heroVisible = true;
+const pauseHero = on => hero.classList.toggle("paused", on);
+hero.addEventListener("mouseenter", () => pauseHero(true));
+hero.addEventListener("mouseleave", () => pauseHero(!heroVisible));
+hero.addEventListener("focusin", () => pauseHero(true));
+hero.addEventListener("focusout", () => pauseHero(false));
+let tx = null;
+hero.addEventListener("touchstart", e => tx = e.touches[0].clientX, { passive: true });
+hero.addEventListener("touchend", e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1)); tx = null; });
+new IntersectionObserver(([en]) => { heroVisible = en.isIntersecting; pauseHero(!heroVisible); }, { threshold: .3 }).observe(hero);
+
+/* =================================================================
+   HORIZONTAL TIMELINE  (vertical scrolling drives the track sideways)
+   ================================================================= */
+const tlSec = $("#timeline"), track = $("#tl-track"), panels = $$(".panel", track), N = panels.length;
+const tl = { idx: -1, vw: 0, vh: 0, pw: 0, gap: 0, lastW: 0 };
+function measureTL(force) {
+  if (!force && innerWidth === tl.lastW) return;
+  tl.lastW = tl.vw = innerWidth; tl.vh = innerHeight;
+  tl.gap = Math.round(innerWidth * (innerWidth < 900 ? .05 : .04));
+  track.style.setProperty("--gap", tl.gap + "px");
+  tl.pw = panels[0].offsetWidth;
+  tlSec.style.height = Math.round(tl.vh + (N - 1) * tl.vh * .7) + "px";
+  updateTL();
+}
+function tlRange() { return tlSec.offsetHeight - tl.vh; }
+function updateTL() {
+  const range = tlRange();
+  const p = range > 0 ? clamp(-tlSec.getBoundingClientRect().top / range, 0, 1) : 0;
+  const f = p * (N - 1);
+  track.style.transform = `translate3d(${(tl.vw - tl.pw) / 2 - f * (tl.pw + tl.gap)}px,0,0)`;
+  const i0 = Math.floor(f), i1 = Math.min(N - 1, i0 + 1), fr = f - i0;
+  $("#ax-fill").style.width = (AXP[i0] + (AXP[i1] - AXP[i0]) * fr) + "%";
+  const idx = Math.round(f);
+  if (idx !== tl.idx) setTLActive(idx);
+}
+function setTLActive(i) {
+  tl.idx = i; const e = EV[i];
+  panels.forEach((p, k) => p.classList.toggle("active", k === i));
+  const sb = $(".scene-box", panels[i]); sb.classList.remove("play"); void sb.offsetWidth; sb.classList.add("play");
+  $$(".ax-dot").forEach((d, k) => d.classList.toggle("active", k === i));
+  setOdo($("#tl-odo"), e.year);
+  tlSec.style.setProperty("--era-color", eraColor(e.era));
+  $("#tl-era").textContent = C.eras[e.era].label;
+  $("#tl-count").textContent = `${i + 1} / ${N}`;
+}
+function scrollToTL(i) {
+  i = clamp(i, 0, N - 1);
+  const top = tlSec.getBoundingClientRect().top + scrollY + tlRange() * (i / (N - 1));
+  scrollTo({ top: Math.round(top) + 1, behavior: reduced ? "auto" : "smooth" });
+}
+track.addEventListener("click", e => {
+  const p = e.target.closest(".panel"); if (!p) return;
+  if (!p.classList.contains("active")) { e.stopPropagation(); e.preventDefault(); scrollToTL(+p.dataset.i); }
+});
+$("#tl-axis").addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (b) scrollToTL(+b.dataset.go); });
+$("#tl-prev").onclick = () => scrollToTL(tl.idx - 1);
+$("#tl-next").onclick = () => scrollToTL(tl.idx + 1);
+addEventListener("resize", () => measureTL(false));
+document.fonts && document.fonts.ready.then(() => measureTL(true));
+
+const nav = $("#nav"), bar = $("#progress");
+let ticking = false;
+function onScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  nav.classList.toggle("scrolled", scrollY > 40);
+  updateTL();
+  ticking = false;
+}
+addEventListener("scroll", () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
+new IntersectionObserver(([en], ob) => { if (en.isIntersecting) { $("#dots").classList.add("in"); ob.disconnect(); } }, { threshold: .35 }).observe($("#dots"));
+
+document.addEventListener("keydown", e => {
+  if (pageOpen || /input|textarea|select/i.test(document.activeElement.tagName)) return;
+  if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+  const d = e.key === "ArrowRight" ? 1 : -1;
+  const r = tlSec.getBoundingClientRect();
+  if (r.top <= 1 && r.bottom >= innerHeight - 1) { e.preventDefault(); scrollToTL(tl.idx + d); }
+  else if (heroVisible) go(cur + d);
+});
+
+/* =================================================================
+   MINI-PAGES
+   ================================================================= */
+const page = $("#page"), pc = $("#page-content");
+let pageOpen = null, opener = null, pushed = false, hideT;
+
+function renderPage(p) {
+  const list = GROUPS[p.group], idx = list.indexOf(p.id);
+  const prev = PAGES[list[idx - 1]], next = PAGES[list[idx + 1]];
+  page.style.setProperty("--c", p.group === "people" ? "var(--gold)" : eraColor(p.era));
+  const paras = p.body.map(t => `<p>${t}</p>`);
+  if (p.quote) paras.splice(Math.min(1, paras.length), 0, `<blockquote>“${p.quote.text}”<cite>${p.quote.cite}</cite></blockquote>`);
+  const vis = visualFor(p);
+  pc.innerHTML = `
+    <header class="page-head${vis ? "" : " no-visual"}">
+      <div class="wrap">
+        <div class="page-bar reveal"><span class="crumb">${p.crumb}${list.length > 1 ? `, ${idx + 1} of ${list.length}` : ""}</span><button class="btn small" data-close>Close</button></div>
+        <div>
+          <p class="page-date reveal">${p.date}</p>
+          <h2 id="page-title" class="reveal">${p.title}</h2>
+          ${p.group === "people" ? `<p class="page-sum reveal">${p.role}</p>` : ""}
+        </div>
+        ${vis}
+      </div>
+    </header>
+    <div class="wrap page-body"><article class="page-main">${paras.join("")}</article></div>
+    <section class="wrap page-game"><h3>Play</h3><div class="game"></div></section>
+    <nav class="wrap page-nav" aria-label="More in ${p.crumb}">
+      ${prev ? `<button class="pn prev" data-goto="${prev.id}"><small>Previous</small><span>${prev.title}</span></button>` : ""}
+      ${next ? `<button class="pn next" data-goto="${next.id}"><small>Next</small><span>${next.title}</span></button>` : `<button class="pn next" data-close><small>Finished</small><span>Back to ${p.crumb.toLowerCase()}</span></button>`}
+    </nav>`;
+  mountGame($(".game", pc), p.game, p.id);
+}
+function openPage(id, origin, fromHistory) {
+  const p = PAGES[id]; if (!p) return;
+  if (pageOpen) { swapPage(id, fromHistory); return; }
+  opener = origin || document.activeElement;
+  const r = origin && origin.getBoundingClientRect ? origin.getBoundingClientRect() : null;
+  page.style.setProperty("--x", r ? `${r.left + r.width / 2}px` : "50%");
+  page.style.setProperty("--y", r ? `${r.top + r.height / 2}px` : "50%");
+  renderPage(p);
+  clearTimeout(hideT);
+  page.hidden = false; page.scrollTop = 0;
+  void page.offsetWidth;
+  page.classList.add("open");
+  document.body.classList.add("locked");
+  pageOpen = id;
+  if (!fromHistory) { history.pushState({ page: id }, "", "#/" + id); pushed = true; }
+  setTimeout(() => $("[data-close]", pc)?.focus({ preventScroll: true }), reduced ? 0 : 500);
+}
+function swapPage(id, fromHistory) {
+  pc.classList.add("swap");
+  setTimeout(() => {
+    renderPage(PAGES[id]); page.scrollTop = 0; pageOpen = id;
+    if (!fromHistory) history.replaceState({ page: id }, "", "#/" + id);
+    pc.classList.remove("swap");
+    $("[data-close]", pc)?.focus({ preventScroll: true });
+  }, reduced ? 0 : 250);
+}
+function closePage(fromHistory) {
+  if (!pageOpen) return;
+  const target = $(`[data-open="${pageOpen}"]`) || opener;
+  if (target && target.getBoundingClientRect) {
+    const r = target.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < innerHeight && r.width) { page.style.setProperty("--x", `${r.left + r.width / 2}px`); page.style.setProperty("--y", `${r.top + r.height / 2}px`); }
+  }
+  page.classList.remove("open");
+  document.body.classList.remove("locked");
+  hideT = setTimeout(() => { page.hidden = true; }, reduced ? 0 : 820);
+  pageOpen = null;
+  if (!fromHistory) {
+    if (pushed && history.state && history.state.page) { pushed = false; history.back(); }
+    else history.replaceState(null, "", location.pathname + location.search);
+  }
+  const focusEl = target && document.contains(target) ? target : opener;
+  focusEl?.focus?.({ preventScroll: true });
+}
+function requestClose() {
+  if (pushed && history.state && history.state.page) history.back();
+  else closePage();
+}
+addEventListener("popstate", () => {
+  const m = location.hash.match(/^#\/(.+)$/);
+  if (m && PAGES[m[1]]) openPage(m[1], null, true);
+  else { pushed = false; closePage(true); }
+});
+document.addEventListener("click", e => {
+  const o = e.target.closest("[data-open]");
+  if (o) { openPage(o.dataset.open, o); return; }
+  if (e.target.closest("[data-close]")) { requestClose(); return; }
+  const g = e.target.closest("[data-goto]");
+  if (g) openPage(g.dataset.goto);
+});
+document.addEventListener("keydown", e => {
+  if (!pageOpen) return;
+  if (e.key === "Escape") requestClose();
+  if (e.key === "Tab") {
+    const f = $$("button:not([disabled]), [href], [tabindex]:not([tabindex='-1'])", page).filter(x => x.offsetParent !== null);
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  }
+});
+
+/* =================================================================
+   MINI-GAME ENGINES
+   ================================================================= */
+function mountGame(el, g, id) { ({ match, order, scenario })[g.type](el, g, id); }
+function head(title, meta, g) {
+  return `<div class="game-head"><span class="game-title">${title}</span><span class="game-meta">${meta}</span><span class="game-pts">${gameMax(g)} points</span></div>`;
+}
+
+/* match */
+function match(el, g, id) {
+  const start = () => {
+    let sel = null, mistakes = 0, done = 0;
+    const L = shuffle(g.pairs.map((p, i) => ({ t: p[0], i }))), R = shuffle(g.pairs.map((p, i) => ({ t: p[1], i })));
+    el.innerHTML = head(g.title || "Matching", `${g.pairs.length} pairs`, g) +
+      `<p class="hint">${g.prompt || "Pick an item, then its match."}</p>
+       <div class="match"><div class="mcol">${L.map(x => `<button class="mi" data-side="L" data-i="${x.i}">${x.t}</button>`).join("")}</div>
+       <div class="mcol">${R.map(x => `<button class="mi" data-side="R" data-i="${x.i}">${x.t}</button>`).join("")}</div></div>
+       <div class="feedback" aria-live="polite"></div>`;
+    $$(".mi", el).forEach(b => b.onclick = () => {
+      if (b.classList.contains("matched")) return;
+      if (!sel || sel.dataset.side === b.dataset.side) { sel?.classList.remove("sel"); sel = b; b.classList.add("sel"); return; }
+      if (sel.dataset.i === b.dataset.i) {
+        done++;
+        [sel, b].forEach(x => { x.classList.remove("sel"); x.classList.add("matched"); x.dataset.n = done; x.disabled = true; });
+        sel = null;
+        if (done === g.pairs.length) {
+          award(id, Math.max(5, 20 - mistakes * 4));
+          $(".feedback", el).innerHTML = `<p class="result">All matched</p><p>${mistakes ? `${mistakes} wrong ${mistakes === 1 ? "guess" : "guesses"}.` : "No wrong guesses."}</p><button class="btn small">Play again</button>`;
+          $(".feedback .btn", el).onclick = start;
+        }
+      } else {
+        mistakes++;
+        const pair = [sel, b];
+        pair.forEach(x => { x.classList.remove("sel", "shake"); void x.offsetWidth; x.classList.add("shake"); });
+        setTimeout(() => pair.forEach(x => x.classList.remove("shake")), 500);
+        sel = null;
+      }
+    });
+  };
+  start();
+}
+
+/* order */
+function order(el, g, id) {
+  let items, checks;
+  const start = () => {
+    checks = 0;
+    do { items = shuffle(g.items.map((it, i) => ({ ...it, i }))); } while (items.every((it, k) => it.i === k));
+    el.innerHTML = head(g.title || "Put it in order", `${g.items.length} events`, g) +
+      `<p class="hint">${g.prompt || ""} Drag the rows, or use the arrows.</p><ol class="olist"></ol>
+       <button class="btn primary small check">Check order</button><div class="feedback" aria-live="polite"></div>`;
+    draw();
+    $(".check", el).onclick = check;
+  };
+  const draw = (focusI, dir) => {
+    const ol = $(".olist", el);
+    ol.innerHTML = items.map((it, k) => `
+      <li class="oi" draggable="true" data-i="${it.i}">
+        <span class="grip" aria-hidden="true">⋮⋮</span><span class="oi-t">${it.label}</span><span class="oi-d"></span>
+        <span class="mv"><button data-mv="-1" aria-label="Move ${esc(it.label)} up" ${k === 0 ? "disabled" : ""}>↑</button><button data-mv="1" aria-label="Move ${esc(it.label)} down" ${k === items.length - 1 ? "disabled" : ""}>↓</button></span>
+      </li>`).join("");
+    if (focusI != null) { const b = $(`.oi[data-i="${focusI}"] [data-mv="${dir}"]`, ol); (b && !b.disabled ? b : $(`.oi[data-i="${focusI}"] button:not([disabled])`, ol))?.focus({ preventScroll: true }); }
+    $$("[data-mv]", ol).forEach(b => b.onclick = () => {
+      const li = b.closest(".oi"), k = items.findIndex(x => x.i === +li.dataset.i), d = +b.dataset.mv;
+      [items[k], items[k + d]] = [items[k + d], items[k]];
+      draw(+li.dataset.i, d);
+    });
+    let drag = null;
+    $$(".oi", ol).forEach(li => {
+      li.addEventListener("dragstart", e => { drag = li; li.classList.add("dragging"); e.dataTransfer.effectAllowed = "move"; e.dataTransfer.setData("text/plain", ""); });
+      li.addEventListener("dragend", () => { li.classList.remove("dragging"); drag = null; items = $$(".oi", ol).map(x => items.find(y => y.i === +x.dataset.i)); draw(); });
+      li.addEventListener("dragover", e => { e.preventDefault(); if (!drag || drag === li) return; const r = li.getBoundingClientRect(); ol.insertBefore(drag, e.clientY > r.top + r.height / 2 ? li.nextSibling : li); });
+    });
+  };
+  const check = () => {
+    checks++;
+    let ok = 0;
+    $$(".oi", el).forEach((li, k) => { const good = +li.dataset.i === k; ok += good; li.classList.toggle("ok", good); li.classList.toggle("bad", !good); });
+    const fb = $(".feedback", el);
+    if (ok === items.length) {
+      award(id, Math.max(10, 30 - (checks - 1) * 5));
+      $$(".oi", el).forEach(li => { $(".oi-d", li).textContent = g.items[+li.dataset.i].date || ""; li.draggable = false; });
+      $$(".mv button", el).forEach(b => b.disabled = true);
+      $(".olist", el).classList.add("locked");
+      $(".check", el).remove();
+      fb.innerHTML = `<p class="result">In order</p><p>${checks === 1 ? "First try." : `Solved in ${checks} checks.`}</p><button class="btn small">Play again</button>`;
+      $(".btn", fb).onclick = start;
+    } else fb.innerHTML = `<p><strong>${ok} of ${items.length} in the right place.</strong> Move the rows marked in red and check again.</p>`;
+  };
+  start();
+}
+
+/* scenario */
+function scenario(el, g, id) {
+  let node, trail, hitBad = false;
+  const start = keep => { node = g.start; trail = []; hitBad = !!keep; render(); };
+  const render = () => {
+    const n = g.nodes[node];
+    let html = head(g.title || "Your call", n.end ? "The outcome" : `Decision ${trail.length + 1}`, g);
+    if (trail.length) html += `<ol class="trail">${trail.map(t => `<li>${t}</li>`).join("")}</ol>`;
+    if (n.end) {
+      if (n.outcome === "good") award(id, hitBad ? 10 : 20); else hitBad = true;
+      html += `<span class="outcome ${n.outcome}">${n.outcome === "good" ? "Historical outcome" : "Dead end"}</span><p class="scn">${n.text}</p>
+        <button class="btn ${n.outcome === "good" ? "" : "primary "}small">${n.outcome === "good" ? "Play again" : "Try another path"}</button>`;
+      el.innerHTML = html;
+      $(".btn", el).onclick = () => start(n.outcome !== "good");
+    } else {
+      html += `<p class="scn">${n.text}</p><div class="opts">${n.choices.map((c, k) => `<button class="opt" data-k="${k}">${c.label}</button>`).join("")}</div>`;
+      el.innerHTML = html;
+      $$(".opt", el).forEach(b => b.onclick = () => { const c = n.choices[+b.dataset.k]; trail.push(c.label); node = c.next; render(); $(".opt, .btn", el)?.focus({ preventScroll: true }); });
+    }
+  };
+  start();
+}
+
+/* =================================================================
+   START
+   ================================================================= */
+measureTL(true);
+onScroll();
+{ const m = location.hash.match(/^#\/(.+)$/); if (m && PAGES[m[1]]) { history.replaceState(null, "", location.pathname); openPage(m[1]); } }
+})();
+</script>
+</body>
+</html>
